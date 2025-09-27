@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet", "MakFood.Wallet\MakFood.Wallet.csproj", "{D47E87D7-1CA3-4FAA-92DC-551BF33DC072}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet.Domain.Model", "MakFood.Wallet.Domain\MakFood.Wallet.Domain.Model.csproj", "{2537B905-42C0-4FFE-AFC2-ACB753895C40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{53D4D3E1-7242-484F-A087-CACB8EFBCF05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D27ECCB4-008F-4C2A-9473-57D29B5A8B92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{2852A764-7240-47A4-8704-87D25FCF9EE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet.Application", "MakFood.Wallet.Services\MakFood.Wallet.Application.csproj", "{6823521A-0A8B-4049-8260-F6D5351968EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{06624650-C3F0-40AB-B43C-34947CE3F718}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet.Infrastructure.Context", "MakFood.Wallet.Infrastructure.Context\MakFood.Wallet.Infrastructure.Context.csproj", "{9652EF08-3AD6-42E0-8424-1AE90849F6DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet.Infrastructure.Repositories", "MakFood.Wallet.Infrastructure.Repositories\MakFood.Wallet.Infrastructure.Repositories.csproj", "{60F043DC-A1BD-4CC6-BA2F-D3E9DFC59187}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5BA8EA2D-F301-422C-95E0-B60BF6F79078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet.Application.DI", "MakFood.Wallet.Application.DI\MakFood.Wallet.Application.DI.csproj", "{9DDCCD4F-60F8-431A-980F-BDD65EB9C063}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet.Infrastructure.DI", "MakFood.Wallet.Infrastructure.DI\MakFood.Wallet.Infrastructure.DI.csproj", "{D8BCBAEB-C658-4E26-AF47-3EF72390BF46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D47E87D7-1CA3-4FAA-92DC-551BF33DC072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D47E87D7-1CA3-4FAA-92DC-551BF33DC072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D47E87D7-1CA3-4FAA-92DC-551BF33DC072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D47E87D7-1CA3-4FAA-92DC-551BF33DC072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2537B905-42C0-4FFE-AFC2-ACB753895C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2537B905-42C0-4FFE-AFC2-ACB753895C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2537B905-42C0-4FFE-AFC2-ACB753895C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2537B905-42C0-4FFE-AFC2-ACB753895C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6823521A-0A8B-4049-8260-F6D5351968EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6823521A-0A8B-4049-8260-F6D5351968EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6823521A-0A8B-4049-8260-F6D5351968EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6823521A-0A8B-4049-8260-F6D5351968EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9652EF08-3AD6-42E0-8424-1AE90849F6DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9652EF08-3AD6-42E0-8424-1AE90849F6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9652EF08-3AD6-42E0-8424-1AE90849F6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9652EF08-3AD6-42E0-8424-1AE90849F6DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60F043DC-A1BD-4CC6-BA2F-D3E9DFC59187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60F043DC-A1BD-4CC6-BA2F-D3E9DFC59187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60F043DC-A1BD-4CC6-BA2F-D3E9DFC59187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60F043DC-A1BD-4CC6-BA2F-D3E9DFC59187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DDCCD4F-60F8-431A-980F-BDD65EB9C063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DDCCD4F-60F8-431A-980F-BDD65EB9C063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DDCCD4F-60F8-431A-980F-BDD65EB9C063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DDCCD4F-60F8-431A-980F-BDD65EB9C063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8BCBAEB-C658-4E26-AF47-3EF72390BF46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8BCBAEB-C658-4E26-AF47-3EF72390BF46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8BCBAEB-C658-4E26-AF47-3EF72390BF46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8BCBAEB-C658-4E26-AF47-3EF72390BF46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D47E87D7-1CA3-4FAA-92DC-551BF33DC072} = {53D4D3E1-7242-484F-A087-CACB8EFBCF05}
+		{2537B905-42C0-4FFE-AFC2-ACB753895C40} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6823521A-0A8B-4049-8260-F6D5351968EF} = {2852A764-7240-47A4-8704-87D25FCF9EE7}
+		{06624650-C3F0-40AB-B43C-34947CE3F718} = {D27ECCB4-008F-4C2A-9473-57D29B5A8B92}
+		{9652EF08-3AD6-42E0-8424-1AE90849F6DF} = {06624650-C3F0-40AB-B43C-34947CE3F718}
+		{60F043DC-A1BD-4CC6-BA2F-D3E9DFC59187} = {06624650-C3F0-40AB-B43C-34947CE3F718}
+		{9DDCCD4F-60F8-431A-980F-BDD65EB9C063} = {2852A764-7240-47A4-8704-87D25FCF9EE7}
+		{D8BCBAEB-C658-4E26-AF47-3EF72390BF46} = {D27ECCB4-008F-4C2A-9473-57D29B5A8B92}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE6A739D-3F87-487D-89FB-5970D05D394A}
+	EndGlobalSection
+EndGlobal
