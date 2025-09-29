@@ -1,0 +1,50 @@
+﻿using Azure;
+using MakFood.Wallet.Application.Contracts;
+using MakFood.Wallet.Application.DTOs.ZarinpalGatewayDTOs;
+using MakFood.Wallet.Infrastructure.Context;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Json;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MakFood.Wallet.Infrastructure.Repositories.Services
+{
+    public class ZarinpalGateway : IZarinpalGateway
+    {
+
+        private readonly IHttpClientFactory _clientfactory;
+        private readonly string _merchent_id = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+        private readonly MakFoodWalletDbContext _context;
+
+
+        public ZarinpalGateway(IHttpClientFactory clientfactory , MakFoodWalletDbContext makFoodWalletDb)
+        {
+            _clientfactory = clientfactory;
+            _context = makFoodWalletDb;
+        }
+
+        public async Task<ZarinpalRequestResponse> PayRequest(decimal Amount, string Email, string Description)
+        {
+            var client = _clientfactory.CreateClient();
+            var request = new ZarinpalRequest()
+            {
+                merchant_id = _merchent_id,
+                amount = Convert.ToInt32(Amount),
+                callback_url = "http://localhost:5000/api/zarinpal/verify",
+                description = Description,
+                metadata = new { email = $"{Email}" }
+            };
+            var PostRequestContent = await client.PostAsJsonAsync("https://sandbox.zarinpal.com/pg/v4/payment/request.json", request);
+            var result = await PostRequestContent.Content.ReadFromJsonAsync<ZarinpalRequestResponse>();
+
+
+
+
+            return result;
+        }
+
+
+    }
+}

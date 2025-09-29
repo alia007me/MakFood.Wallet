@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\MakFood.Wallet.Application\MakFood.Wallet.Application.csproj" />
+    <ProjectReference Include="..\MakFood.Wallet.Domain\MakFood.Wallet.Domain.Model.csproj" />
+    <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Context\MakFood.Wallet.Infrastructure.Context.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
 
 </Project>
