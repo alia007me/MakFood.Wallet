@@ -1,6 +1,5 @@
 ﻿using Azure;
-using MakFood.Wallet.Application.Contracts;
-using MakFood.Wallet.Application.DTOs.ZarinpalGatewayDTOs;
+using MakFood.Wallet.Infrastructure.Repositories.Contracts;
 using MakFood.Wallet.Infrastructure.Context;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using MakFood.Wallet.Infrastructure.Repositories.ServiceDtos;
 
 namespace MakFood.Wallet.Infrastructure.Repositories.Services
 {

@@ -4,6 +4,7 @@ using MakFood.Wallet.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakFood.Wallet.Infrastructure.Context.Migrations
 {
     [DbContext(typeof(MakFoodWalletDbContext))]
-    partial class MakFoodWalletDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250930132838_AddChargeModelStatusToChargeTransaction")]
+    partial class AddChargeModelStatusToChargeTransaction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,11 +113,6 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                     b.Property<Guid>("TransactionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ChargeState")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ChargeState");
 
                     b.Property<string>("ChargeStatus")
                         .IsRequired()

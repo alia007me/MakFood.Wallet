@@ -1,8 +1,9 @@
-﻿using MakFood.Wallet.Application.Contracts;
-using MakFood.Wallet.Application.DTOs.ZarinpalGatewayDTOs;
+﻿using MakFood.Wallet.Infrastructure.Repositories.Contracts;
+using MakFood.Wallet.Domain.Model.Contracts;
 using MakFood.Wallet.Infrastructure.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MakFood.Wallet.Infrastructure.Repositories.ServiceDtos;
 
 namespace MakFood.Wallet.Host.Controllers
 {
@@ -46,7 +47,10 @@ namespace MakFood.Wallet.Host.Controllers
         {
             var transaction = await _context.ChargeTransactions.SingleOrDefaultAsync(x => x.TransactionNumber == authority);
             if (status != "OK" || transaction == null)
+            {
+                _context.ChargeTransactions.Remove(transaction);
                 return BadRequest("پرداخت لغو شد یا ناموفق بود");
+            }
 
             var client = _clientFactory.CreateClient();
 
@@ -66,6 +70,7 @@ namespace MakFood.Wallet.Host.Controllers
                 if (wallet != null)
                 {
                     wallet.IncreaseBalance(transaction.TransactionAmount);
+                    transaction.ChargeState = Domain.Model.Enums.ChargeModelState.Complete;
                     await _context.SaveChangesAsync();
                 }
                 transaction.UpdateTransactionNumber(Convert.ToString(result.data.ref_id));

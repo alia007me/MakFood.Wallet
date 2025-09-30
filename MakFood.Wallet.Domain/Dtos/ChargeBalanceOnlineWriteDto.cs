@@ -5,13 +5,15 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace MakFood.Wallet.Application.DTOs.ChargeBalanceDTO
+namespace MakFood.Wallet.Domain.Model.Dtos
 {
-    public class ChargeBalanceWriteDTO
+    public class ChargeBalanceOnlineWriteDto
     {
         public Guid Id { get;  set; }
-        public Decimal Amount { get;  set; }
+        public decimal Amount { get;  set; }
         public string Email { get;  set; }
         public string description { get;  set; }
+        [JsonIgnore]
+        public CancellationToken CancellationToken { get; set; }
     }
 }

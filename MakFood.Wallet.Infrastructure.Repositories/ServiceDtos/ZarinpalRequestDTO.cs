@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Wallet.Application.DTOs.ZarinpalGatewayDTOs
+namespace MakFood.Wallet.Infrastructure.Repositories.ServiceDtos
 {
     public class ZarinpalRequestDTO
     {
-        public Decimal Amount { get; private set; }
+        public decimal Amount { get; private set; }
         public string Email { get; private set; }
         public string description { get; private set; }
     }

@@ -19,6 +19,16 @@ namespace MakFood.Wallet.Infrastructure.Context.Configurations
             builder.Property(c => c.TransactionAmount)
                 .HasColumnType("decimal(18,2)")
                 .IsRequired();
+            builder.Property(x => x.ChargeStatus)
+                .HasColumnName("ChargeModel")
+                .HasConversion<string>()
+                .HasMaxLength(20)
+                .IsRequired();
+
+            builder.Property(x => x.ChargeState)
+                .HasColumnName("ChargeState")
+                .HasConversion<string>()
+                .IsRequired();
 
             builder.Property(c => c.TransactionNumber)
                 .IsRequired()

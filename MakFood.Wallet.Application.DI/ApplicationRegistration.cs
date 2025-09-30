@@ -1,5 +1,5 @@
-﻿using MakFood.Wallet.Application.Features.ChargeBalance.Handler.Commands;
-using MakFood.Wallet.Application.Features.ChargeBalance.Request.Commands;
+﻿using FluentValidation;
+using MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,9 @@ namespace MakFood.Wallet.Application.DI
         {
             services.AddMediatR(cfg =>
             {
-                cfg.RegisterServicesFromAssembly(typeof(ChargeBalanceOnlineRequestHandler).Assembly);
+                cfg.RegisterServicesFromAssembly(typeof(ChargeBalanceOnlineCommandHandler).Assembly);
             });
+            services.AddValidatorsFromAssemblyContaining<ChargeBalanceOnlineCommandValidator>();
 
             return services;
         }
