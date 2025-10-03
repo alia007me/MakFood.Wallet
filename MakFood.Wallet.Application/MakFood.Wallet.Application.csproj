@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MakFood.Wallet.Domain\MakFood.Wallet.Domain.Model.csproj" />
+    <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Context\MakFood.Wallet.Infrastructure.Context.csproj" />
+    <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Repositories\MakFood.Wallet.Infrastructure.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>

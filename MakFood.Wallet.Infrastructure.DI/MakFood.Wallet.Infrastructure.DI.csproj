@@ -9,13 +9,18 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.9" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.9" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MakFood.Wallet.Domain\MakFood.Wallet.Domain.Model.csproj" />
     <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Context\MakFood.Wallet.Infrastructure.Context.csproj" />
     <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Repositories\MakFood.Wallet.Infrastructure.Repositories.csproj" />
+    <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Substructure\MakFood.Wallet.Infrastructure.Substructure.csproj" />
   </ItemGroup>
 
 </Project>

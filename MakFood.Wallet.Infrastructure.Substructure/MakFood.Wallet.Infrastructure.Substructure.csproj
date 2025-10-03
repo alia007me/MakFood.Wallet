@@ -7,12 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="JsonConverter.Abstractions" Version="0.7.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <Folder Include="Base\" />
   </ItemGroup>
 
 </Project>
