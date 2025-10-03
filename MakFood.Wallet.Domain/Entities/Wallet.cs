@@ -25,7 +25,7 @@ namespace MakFood.Wallet.Domain.Model.Entities
 
 
         public IList<Accounts> Accounts { get; private set; } = new List<Accounts>();
-        public IList<ChargeTransaction> chargeTransactions { get; private set; } = new List<ChargeTransaction>();
+        public IList<ChargeTransaction> chargeTransactions { get;  set; } = new List<ChargeTransaction>();
         public IList<RefundTransaction> refundTransactions { get; private set; } = new List<RefundTransaction>();
         public IList<OrderDetails> OrderDetails { get; private set; } = new List<OrderDetails>();
 

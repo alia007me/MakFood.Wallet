@@ -17,15 +17,18 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Services
         {
             _context = context;
         }
-
+        
         public async Task Execute(IJobExecutionContext context)
         {
             var time = DateTime.Now.AddMinutes(-1);
 
-            var expiredtransactions = await _context.ChargeTransactions.Where
-                (x => x.ChargeState == Domain.Model.Enums.ChargeModelState.Pending && x.TransactionDate < time).ToListAsync();
+            var expiredtransactions = await _context.Wallets
+                .Include(x=>x.chargeTransactions)
+                .SelectMany(x=>x.chargeTransactions)
+                .Where(x=> x.ChargeState == Domain.Model.Enums.ChargeModelState.Pending && x.TransactionDate < time).ToListAsync();
+                //(x => x.ChargeState == Domain.Model.Enums.ChargeModelState.Pending && x.TransactionDate < time).ToListAsync();
 
-            if(expiredtransactions.Any())
+            if (expiredtransactions.Any())
             {
                 _context.ChargeTransactions.RemoveRange(expiredtransactions);
                 await _context.SaveChangesAsync();

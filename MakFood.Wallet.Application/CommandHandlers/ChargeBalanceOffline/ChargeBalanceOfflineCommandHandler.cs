@@ -20,8 +20,11 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline
 
         public async Task<ChargeBalanceOfflineCommandResponse> Handle(ChargeBalanceOfflineCommand request, CancellationToken cancellationToken)
         {
+            request.request.CancellationToken = cancellationToken;
             var result = await _chargerepository.ChargeBalanceOffline(request.request);
             var response = new ChargeBalanceOfflineCommandResponse();
+
+            
             if (result)
             {
                 response.Response = "Please Wait Until Chef Accept Your Payment";

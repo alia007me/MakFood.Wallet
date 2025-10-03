@@ -1,4 +1,5 @@
-﻿using MakFood.Wallet.Domain.Model.Enums;
+﻿using MakFood.Wallet.Domain.Model.Contracts;
+using MakFood.Wallet.Domain.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,11 @@ namespace MakFood.Wallet.Domain.Model.Entities.TransactionAggregate
         public ChargeModelState ChargeState { get; set; }
 
         public Guid WalletId { get; private set; }
-        public Wallet Wallet { get; private set; }
+        public Wallet Wallet { get;  set; }
+
+
+
+
 
     }
 }

@@ -15,9 +15,9 @@ namespace MakFood.Wallet.Domain.Model.Entities.TransactionAggregate
             this.TransactionDate = TransactionDate;
         }
 
-        public decimal TransactionAmount { get; protected init; }
+        public decimal TransactionAmount { get; protected set; }
         public string TransactionNumber { get; protected set; }
-        public DateTime TransactionDate { get; protected init; }
+        public DateTime TransactionDate { get; protected set; }
 
 
 

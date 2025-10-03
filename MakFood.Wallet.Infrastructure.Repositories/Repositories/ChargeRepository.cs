@@ -17,7 +17,6 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
     {
         private readonly MakFoodWalletDbContext _context;
         private readonly IZarinpalGateway _zarinpalGateway;
-        private readonly ConcurrentDictionary<Guid, decimal> _pendingrequests = new ConcurrentDictionary<Guid, decimal>();
 
         public ChargeRepository(MakFoodWalletDbContext context, IZarinpalGateway zarinpalGateway)
         {
@@ -27,18 +26,27 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
 
         public async Task<bool> ChargeBalanceOffline(ChargeBalanceOfflineWriteDto chargeBalance)
         {
-            var wallet = await _context.Wallets.SingleOrDefaultAsync(x=>x.CustomerId == chargeBalance.CustomerId);
+            var wallet = await _context.Wallets.SingleOrDefaultAsync(x=>x.WalletId == chargeBalance.Walletid);
             if (wallet == null)
             {
                 return false;
             }
+            var time =  DateTime.Now;
+            DateTime trimmed = new DateTime(
+                time.Year,
+                time.Month,
+                time.Day,
+                time.Hour,
+                time.Minute,
+                0
+            );
             var random = new Random();
             string number = random.Next(100000, 1000000).ToString();
             var result = await _context.ChargeTransactions.AddAsync
                 (new Domain.Model.Entities.TransactionAggregate.ChargeTransaction
-                (chargeBalance.Amount,number,DateTime.Now,wallet.WalletId,
-                Domain.Model.Enums.ChargeModelStatus.Offline,Domain.Model.Enums.ChargeModelState.Pending));
-            await _context.SaveChangesAsync();
+                (chargeBalance.Amount,number,trimmed,wallet.WalletId,
+                Domain.Model.Enums.ChargeModelStatus.Offline,Domain.Model.Enums.ChargeModelState.Pending),chargeBalance.CancellationToken);
+            await _context.SaveChangesAsync(chargeBalance.CancellationToken);
             return true;
 
 
@@ -46,16 +54,16 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
         }
         public async Task<string> CheckChefResponseAsync(ChefResponseDto chargeBalance)
         {
-            var wallet = await _context.Wallets.SingleOrDefaultAsync(x=>x.CustomerId == chargeBalance.CustomerId);
+            var wallet = await _context.Wallets.SingleOrDefaultAsync(x=>x.WalletId == chargeBalance.Walletid);
             if (wallet == null)
                 return "Wallet Not Found";
             else
             {
+                
                 var result = await _context.ChargeTransactions.SingleOrDefaultAsync
                     (x=>x.WalletId == wallet.WalletId && x.TransactionDate == chargeBalance.DateTime && x.TransactionAmount == chargeBalance.Amount);
                 if (result == null)
                 {
-                    _context.ChargeTransactions.Remove(result);
                     return "Chef Didn't Accept Your Request ! Talk With Him/Her For Issue";
                 }
                 else
