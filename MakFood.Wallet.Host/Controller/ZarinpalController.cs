@@ -48,7 +48,7 @@ namespace MakFood.Wallet.Host.Controller
 
 
 
-            var request = new ZarinpalVerifyCommand() { authority = authority, merchant_id = _merchent_id };
+            var request = new ZarinpalVerifyCommand() { authority = authority, merchant_id = _merchent_id ,status = status  };
 
 
             var result = await _mediator.Send(request);
