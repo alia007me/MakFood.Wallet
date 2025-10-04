@@ -32,18 +32,26 @@ namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalVerify
             var transaction = await _transactionRepository.GetTransactionAsync(request.authority);
             if (transaction == null)
                 throw new Exception("TransactionNotFound");
-            var result = await _zarinpalGateway.VerifyTransactionFromZarinpal(request.authority, transaction.Amount);
             var wallet = await _chargeWalletRepository.GetWalletById(transaction.WalletId, cancellationToken);
             if (wallet == null) throw new Exception("WalletNotFound");
 
+            if (request.status != "OK")
+            {
+                transaction.UpdateTransactionStatusToCancelled();
+                var response = new ZarinpalVerifyCommandResponse() { message = "Transaction Cancelled" };
+                return response;
+            }
+
+            var result = await _zarinpalGateway.VerifyTransactionFromZarinpal(request.authority, transaction.Amount);
             if (result?.data.code == 100)
             {
-                wallet.Apply(new MoneyIncreasedEvent(transaction.Amount,Domain.Model.Enums.PaymentMethod.Online));
+                wallet.Apply(new MoneyIncreasedEvent(transaction.Amount, Domain.Model.Enums.PaymentMethod.Online));
                 transaction.UpdateTransactionNumber(result.data.ref_id.ToString());
+                transaction.UpdateTransacationStatusToDone();
                 var response = new ZarinpalVerifyCommandResponse()
                 {
                     message = $"Transaction Completed SuccessFully .  TransactionNumber : {result.data.ref_id}"
-                };  
+                };
                 return response;
 
             }
@@ -58,3 +66,4 @@ namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalVerify
         }
     }
 }
+

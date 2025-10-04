@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,13 @@ namespace MakFood.Wallet.Infrastructure.Context.Configurations
             builder.Property(x => x.TransactionNumber)
                    .HasMaxLength(50)
                    .IsRequired();
+
+            builder.Property(x=>x.PaymentMethod)
+                .HasConversion<string>().IsRequired();
+
+            builder.Property(x=>x.Status).HasConversion<string>().IsRequired();
+
+            builder.Property(x => x.DateTime).IsRequired();
 
             builder.ToTable("Transactions");
         }

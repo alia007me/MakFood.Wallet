@@ -8,17 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalPayRequest
+namespace MakFood.Wallet.Application.CommandHandlers.ChefApprove
 {
-    public class ZarinpalPayRequestCommand : CommandBase ,  IRequest<ZarinpalPayRequestCommandResponse>
+    public class ChefApproveCommand : CommandBase,IRequest<ChefApproveCommandResponse>
     {
-        public decimal Amount { get; set; }
-        public string Email { get; set; }
-        public string Description { get; set; }
+        public Guid Walletid { get; set; }
+        public string TransactionNumber { get; set; }
 
         public override void Validate()
         {
-            new ZarinpalPayRequestCommandValidator().Validate(this).ThrowIfNeeded();
+            new ChefApproveCommandValidator().Validate(this).ThrowIfNeeded();
         }
 
     }

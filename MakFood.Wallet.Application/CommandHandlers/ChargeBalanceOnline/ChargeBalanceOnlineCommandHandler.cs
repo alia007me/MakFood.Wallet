@@ -32,7 +32,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
             var result = await _zarinpalGateway.PayRequest(request.Amount, request.Email, request.Description);
             if(result.data.code == 100) 
             {
-                await _transactionRepository.AddTransactionAsync(request.Id, result.data.authority, request.Amount);
+                await _transactionRepository.AddTransactionAsync(request.Id, result.data.authority, request.Amount ,Domain.Model.Enums.PaymentMethod.Online,DateTime.Now , Domain.Model.Enums.PaymentStatus.Pending);
                 var response = new ChargeBalanceOnlineCommandResponse()
                 {
                     Message = $"https://sandbox.zarinpal.com/pg/StartPay/{result.data.authority}"

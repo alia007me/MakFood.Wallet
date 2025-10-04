@@ -44,20 +44,32 @@ namespace MakFood.Wallet.Host.Controller
         [HttpGet("verify")]
         public async Task<IActionResult> Verify([FromQuery] string authority, [FromQuery] string status,CancellationToken ct)
         {
-            if (status != "OK")
-                return BadRequest("Transaction Cancelled");
 
-            var result = await _mediator.Send(new ZarinpalVerifyCommand() { authority = authority,merchant_id = _merchent_id});
+
+
+
+            var request = new ZarinpalVerifyCommand() { authority = authority, merchant_id = _merchent_id };
+
+
+            var result = await _mediator.Send(request);
             if (result.message.Contains("SuccessFully"))
             {
                 await _unitOfWork.Commit(ct);
                 return Ok(result.message);
 
             }
-                
-            else return BadRequest(result.message);
 
-            
+            else if(result.message.Contains("Cancelled")) {
+                await _unitOfWork.Commit(ct);
+                return BadRequest(result.message);
+            }
+            else
+            {
+                return BadRequest(result.message);
+
+            }
+
+
 
 
         }

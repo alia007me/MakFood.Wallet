@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using MakFood.Wallet.Infrastructure.Repositories.ServiceContracts;
 using MakFood.Wallet.Infrastructure.Repositories.Services;
+using MakFood.Wallet.Domain.Model.Services.Contract;
+using MakFood.Wallet.Domain.Model.Services;
 
 namespace MakFood.Wallet.Infrastructure.DI
 {
@@ -30,6 +32,7 @@ namespace MakFood.Wallet.Infrastructure.DI
             services.AddScoped<IChargeWalletRepository, ChargeWalletRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<IZarinpalGateway, ZarinpalGateway>();
+            services.AddScoped<IOfflineTransactionNumberGenerator,OfflineTransactionNumberGenerator>();
             services.AddHttpClient();
 
             return services;

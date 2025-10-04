@@ -1,5 +1,6 @@
 ﻿using MakFood.Wallet.Domain.Model.Contracts;
 using MakFood.Wallet.Domain.Model.Entities;
+using MakFood.Wallet.Domain.Model.Enums;
 using MakFood.Wallet.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,9 +20,10 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
             _context = context;
         }
 
-        public async Task AddTransactionAsync(Guid walletid, string authority, decimal transactionAmount)
+        public async Task AddTransactionAsync(Guid walletid, string transactionNumber, decimal transactionAmount 
+            , PaymentMethod paymentMethod ,DateTime dateTime , PaymentStatus paymentStatus)
         {
-            await _context.Transactions.AddAsync(new Domain.Model.Entities.Transaction(walletid,transactionAmount,authority));
+            await _context.Transactions.AddAsync(new Domain.Model.Entities.Transaction(walletid,transactionAmount,transactionNumber, paymentMethod , dateTime , paymentStatus));
             await _context.SaveChangesAsync();
         }
 

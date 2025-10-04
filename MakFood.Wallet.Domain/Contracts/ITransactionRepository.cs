@@ -1,4 +1,5 @@
 ﻿using MakFood.Wallet.Domain.Model.Entities;
+using MakFood.Wallet.Domain.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,9 @@ namespace MakFood.Wallet.Domain.Model.Contracts
 {
     public interface ITransactionRepository
     {
-        Task AddTransactionAsync(Guid walletid,string authority, Decimal transactionAmount);
-        Task<Transaction> GetTransactionAsync(string authority);
+        Task AddTransactionAsync(Guid walletid,string transactionNumber, Decimal transactionAmount 
+            , PaymentMethod paymentMethod , DateTime dateTime , PaymentStatus paymentStatus);
+        Task<Transaction> GetTransactionAsync(string transactionNumber);
 
     }
 }
