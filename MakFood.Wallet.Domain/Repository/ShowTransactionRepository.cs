@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MakFood.Wallet.
 
 namespace MakFood.Wallet.Infrastructure.Repositories
 {

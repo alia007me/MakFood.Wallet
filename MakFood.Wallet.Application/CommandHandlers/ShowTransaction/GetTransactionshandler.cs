@@ -2,11 +2,13 @@
 using MakFood.Wallet.Application.DTOs;
 using MakFood.Wallet.Application.Features.Payments.Queries;
 using MakFood.Wallet.Domain.Model.Contracts;
+using MakFood.Wallet.Infrastructure.Repositories;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MakFood.Wallet.Application.
 
 namespace MakFood.Wallet.Application.Features.Payments.Handlers
 {

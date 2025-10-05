@@ -10,11 +10,11 @@ namespace MakFood.Wallet.Host.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PaymentsController : ControllerBase
+    public class TransactionController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public PaymentsController(IMediator mediator)
+        public TransactionController(IMediator mediator)
         {
             _mediator = mediator;
         }
