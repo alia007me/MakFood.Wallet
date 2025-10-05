@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MakFood.Wallet.Domain\MakFood.Wallet.Domain.Model.csproj" />
-    <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Substructure\MakFood.Wallet.Infrastructure.Substructure.csproj" />
+    <ProjectReference Include="..\MakFood.Wallet.Services\MakFood.Wallet.Application.csproj" />
   </ItemGroup>
 
 </Project>
