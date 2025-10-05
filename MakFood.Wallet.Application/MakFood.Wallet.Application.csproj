@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MakFood.Wallet.Domain\MakFood.Wallet.Domain.Model.csproj" />
   </ItemGroup>
 
