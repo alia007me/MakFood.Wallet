@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet.Host", "MakF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet.Application", "MakFood.Wallet.Application\MakFood.Wallet.Application.csproj", "{D0F86EEE-2BAA-46D3-9088-B980BCD5C460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Wallet.Infrastructure.Substructure", "MakFood.Wallet.Infrastructure.Substructure\MakFood.Wallet.Infrastructure.Substructure.csproj", "{D972E6EB-1305-4D23-BAC3-79D6B5472ED5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +63,6 @@ Global
 		{D0F86EEE-2BAA-46D3-9088-B980BCD5C460}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0F86EEE-2BAA-46D3-9088-B980BCD5C460}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0F86EEE-2BAA-46D3-9088-B980BCD5C460}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D972E6EB-1305-4D23-BAC3-79D6B5472ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D972E6EB-1305-4D23-BAC3-79D6B5472ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D972E6EB-1305-4D23-BAC3-79D6B5472ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D972E6EB-1305-4D23-BAC3-79D6B5472ED5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,7 +76,6 @@ Global
 		{D8BCBAEB-C658-4E26-AF47-3EF72390BF46} = {D27ECCB4-008F-4C2A-9473-57D29B5A8B92}
 		{E49D76F0-4E2C-45CB-9097-09563CD13989} = {53D4D3E1-7242-484F-A087-CACB8EFBCF05}
 		{D0F86EEE-2BAA-46D3-9088-B980BCD5C460} = {2852A764-7240-47A4-8704-87D25FCF9EE7}
-		{D972E6EB-1305-4D23-BAC3-79D6B5472ED5} = {D27ECCB4-008F-4C2A-9473-57D29B5A8B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FE6A739D-3F87-487D-89FB-5970D05D394A}
