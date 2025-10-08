@@ -15,7 +15,7 @@ namespace MakFood.Wallet.Domain.Model.Entities
 
 
 
-        public Wallet() { }
+        private Wallet() { }
         public Wallet(Guid CustomerId, Decimal Balance, Decimal AvailableBalance)
         {
             this.CustomerId = CustomerId;
@@ -25,13 +25,10 @@ namespace MakFood.Wallet.Domain.Model.Entities
         public Guid WalletId { get; private init; }
         public Guid CustomerId { get; private init; }
         public Decimal Balance { get; private set; }
-        public Decimal AvailableBalance => Balance - 10000;
 
 
 
-
-        public IList<Accounts> Accounts { get; private set; } = new List<Accounts>();
-        public IList<OrderDetails> OrderDetails { get; private set; } = new List<OrderDetails>();
+        public IList<Transaction> Transactions { get; private set; } = new List<Transaction>();
 
 
 
@@ -45,21 +42,31 @@ namespace MakFood.Wallet.Domain.Model.Entities
         }
 
 
-        public void Apply(MoneyIncreasedEvent @event)
+        public void Apply(BalanceIncreasedOnlineEvent @event)
         {
             this.Balance += @event.Amount;
             _events.Add(@event);    
         }
 
-        public void Apply(MoneyDecreasedEvent @event)
+        public void Apply(BalanceDecreasedEvent @event)
         {
             this.Balance -= @event.Amount;
             _events.Add(@event);
         }
 
-        public void Apply(MoneyRefundedEvent @event)
+        public void Apply(BalanceRefundedEvent @event)
         {
             this.Balance -= @event.Amount;
+            _events.Add(@event);
+        }
+
+        public void Apply(BalanceIncreasedOfflineWaitingForApproveEvent @event)
+        {
+            _events.Add(@event);
+        }
+        public void Apply(BalanceIncreasedOfflineEvent @event)
+        {
+            this.Balance += @event.Amount;
             _events.Add(@event);
         }
 

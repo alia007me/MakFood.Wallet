@@ -1,6 +1,6 @@
-﻿using MakFood.Wallet.Domain.Model.Contracts;
+﻿using MakFood.Wallet.Application.ServiceContracts;
+using MakFood.Wallet.Domain.Model.Contracts;
 using MakFood.Wallet.Infrastructure.Context;
-using MakFood.Wallet.Infrastructure.Repositories.ServiceContracts;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -12,16 +12,14 @@ namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalPayRequest
 {
     public class ZarinpalPayRequestCommandHandler : IRequestHandler<ZarinpalPayRequestCommand, ZarinpalPayRequestCommandResponse>
     {
-        private readonly IChargeWalletRepository _chargeRep;
+        private readonly IWalletRepository _chargeRep;
         private readonly IZarinpalGateway _zarinpalGateway;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ITransactionRepository _transactionRepository;
-        public ZarinpalPayRequestCommandHandler(IChargeWalletRepository chargeRep, IZarinpalGateway zarinpalGateway, IUnitOfWork unitOfWork, ITransactionRepository transactionRepository)
+        public ZarinpalPayRequestCommandHandler(IWalletRepository chargeRep, IZarinpalGateway zarinpalGateway, IUnitOfWork unitOfWork)
         {
             _chargeRep = chargeRep;
             _zarinpalGateway = zarinpalGateway;
             _unitOfWork = unitOfWork;
-            _transactionRepository = transactionRepository;
         }
 
         public async Task<ZarinpalPayRequestCommandResponse> Handle(ZarinpalPayRequestCommand request, CancellationToken cancellationToken)

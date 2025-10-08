@@ -1,4 +1,5 @@
 using MakFood.Wallet.Application.DI;
+using MakFood.Wallet.Domain.Model.DI;
 using MakFood.Wallet.Infrastructure.DI;
 using System.Reflection;
 
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.InfrastructureConfiguration(builder.Configuration);
 builder.Services.ConfigureApplicationDI();
+builder.Services.DomainServiceRegistration();
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg =>

@@ -9,9 +9,7 @@ namespace MakFood.Wallet.Domain.Model.Enums
 {
     public enum PaymentMethod
     {
-        [EnumMember(Value = "Online")]
         Online,
-        [EnumMember(Value = "Offline")]
         Offline
     }
 }

@@ -10,14 +10,16 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Application.CommandHandlers.ChefApprove
 {
-    public class ChefApproveCommand : CommandBase,IRequest<ChefApproveCommandResponse>
+    public class ApproveCommand : CommandBase,IRequest<ApproveCommandResponse>
     {
         public Guid Walletid { get; set; }
         public string TransactionNumber { get; set; }
+        public string Approver {  get; set; }
+
 
         public override void Validate()
         {
-            new ChefApproveCommandValidator().Validate(this).ThrowIfNeeded();
+            new ApproveCommandValidator().Validate(this).ThrowIfNeeded();
         }
 
     }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Domain.Model.Events.WalletEvents
 {
-    public class MoneyDecreasedEvent : WalletEvent
+    public class BalanceDecreasedEvent : WalletEvent
     {
-        public MoneyDecreasedEvent(decimal amount)
+        public BalanceDecreasedEvent(decimal amount)
         {
             Amount = amount;
         }

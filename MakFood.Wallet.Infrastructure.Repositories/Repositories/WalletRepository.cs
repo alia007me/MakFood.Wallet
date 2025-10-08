@@ -11,20 +11,25 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
 {
-    public class TransactionRepository : ITransactionRepository
+    public class WalletRepository : IWalletRepository
     {
         private readonly MakFoodWalletDbContext _context;
 
-        public TransactionRepository(MakFoodWalletDbContext context)
+        public WalletRepository(MakFoodWalletDbContext context)
         {
             _context = context;
         }
 
-        public async Task AddTransactionAsync(Guid walletid, string transactionNumber, decimal transactionAmount 
-            , PaymentMethod paymentMethod ,DateTime dateTime , PaymentStatus paymentStatus)
+
+        public async Task<Domain.Model.Entities.Wallet> GetWalletById(Guid Id,CancellationToken ct)
         {
-            await _context.Transactions.AddAsync(new Domain.Model.Entities.Transaction(walletid,transactionAmount,transactionNumber, paymentMethod , dateTime , paymentStatus));
-            await _context.SaveChangesAsync();
+            return await _context.Wallets.SingleOrDefaultAsync(x => x.WalletId == Id,ct);
+        }
+
+        public async Task AddTransactionAsync(Guid walletid, string transactionNumber, decimal transactionAmount
+    , PaymentMethod paymentMethod, DateTime dateTime, PaymentStatus paymentStatus)
+        {
+            await _context.Transactions.AddAsync(new Domain.Model.Entities.Transaction(walletid, transactionAmount, transactionNumber, paymentMethod, dateTime, paymentStatus));
         }
 
         public async Task<Transaction> GetTransactionAsync(string authority)
@@ -32,7 +37,5 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
             var result = await _context.Transactions.SingleOrDefaultAsync(x => x.TransactionNumber == authority);
             return result;
         }
-
-
     }
 }

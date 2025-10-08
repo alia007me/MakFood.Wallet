@@ -30,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MakFood.Wallet.Application.DI\MakFood.Wallet.Application.DI.csproj" />
     <ProjectReference Include="..\MakFood.Wallet.Application\MakFood.Wallet.Application.csproj" />
+    <ProjectReference Include="..\MakFood.Wallet.Domain.Model.DI\MakFood.Wallet.Domain.Model.DI.csproj" />
     <ProjectReference Include="..\MakFood.Wallet.Domain\MakFood.Wallet.Domain.Model.csproj" />
     <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Context\MakFood.Wallet.Infrastructure.Context.csproj" />
     <ProjectReference Include="..\MakFood.Wallet.Infrastructure.DI\MakFood.Wallet.Infrastructure.DI.csproj" />

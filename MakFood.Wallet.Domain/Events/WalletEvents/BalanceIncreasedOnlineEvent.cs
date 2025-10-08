@@ -9,16 +9,15 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Domain.Model.Events.WalletEvents
 {
-    public class MoneyIncreasedEvent : WalletEvent
+    public class BalanceIncreasedOnlineEvent : WalletEvent
     {
-        public MoneyIncreasedEvent(decimal amount, PaymentMethod paymentMethod)
+        public BalanceIncreasedOnlineEvent(decimal amount, PaymentMethod paymentMethod)
         {
             Amount = amount;
             PaymentMethod = paymentMethod;
         }
 
         public Decimal Amount { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
 
         public PaymentMethod PaymentMethod { get; set; }
 
