@@ -1,4 +1,5 @@
-﻿using MakFood.Wallet.Domain.Model.Contracts;
+﻿using MakFood.Wallet.Application.CommandHandlers.RobertInaroAzAvalBiar;
+using MakFood.Wallet.Domain.Model.Contracts;
 using MakFood.Wallet.Domain.Model.Services.Contract;
 using MakFood.Wallet.Infrastructure.Context;
 using MediatR;

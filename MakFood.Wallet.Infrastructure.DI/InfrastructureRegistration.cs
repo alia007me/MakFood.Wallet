@@ -33,6 +33,7 @@ namespace MakFood.Wallet.Infrastructure.DI
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<IZarinpalGateway, ZarinpalGateway>();
             services.AddScoped<IOfflineTransactionNumberGenerator,OfflineTransactionNumberGenerator>();
+            services.AddScoped<IReplyEventRepository, ReplyEventRepository>();
             services.AddHttpClient();
 
             return services;

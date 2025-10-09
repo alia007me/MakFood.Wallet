@@ -2,6 +2,7 @@
 using MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline;
 using MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline;
 using MakFood.Wallet.Application.CommandHandlers.ChefApprove;
+using MakFood.Wallet.Application.CommandHandlers.RobertInaroAzAvalBiar;
 using MakFood.Wallet.Application.CommandHandlers.ZarinpalPayRequest;
 using MakFood.Wallet.Application.CommandHandlers.ZarinpalVerify;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
@@ -21,7 +22,7 @@ namespace MakFood.Wallet.Application.DI
             services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(typeof(ChargeBalanceOnlineCommandHandler).Assembly);
-                cfg.RegisterServicesFromAssemblies(typeof(ChargeBalanceOfflineCommandHandler).Assembly);
+                cfg.RegisterServicesFromAssemblies(typeof(RobertInaroAzAvalBiarCommandHandler).Assembly);
                 cfg.RegisterServicesFromAssemblies(typeof(ChefApproveCommandHandler).Assembly);
                 cfg.RegisterServicesFromAssemblies(typeof(ZarinpalPayRequestCommandHandler).Assembly);
                 cfg.RegisterServicesFromAssemblies(typeof(ZarinpalVerifyCommandHandler).Assembly);
@@ -29,7 +30,7 @@ namespace MakFood.Wallet.Application.DI
             });
 
             services.AddValidatorsFromAssemblyContaining<ChargeBalanceOnlineCommandValidator>();
-            services.AddValidatorsFromAssemblyContaining<ChargeBalanceOfflineCommandValidator>();
+            services.AddValidatorsFromAssemblyContaining<RobertInaroAzAvalBiarCommandValidator>();
             services.AddValidatorsFromAssemblyContaining<ChefApproveCommandValidator>();
             services.AddValidatorsFromAssemblyContaining<ZarinpalPayRequestCommandValidator>();
 

@@ -3,6 +3,7 @@ using MakFood.Wallet.Domain.Model.Events.WalletEvents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace MakFood.Wallet.Domain.Model.Entities
         public Guid CustomerId { get; private init; }
         public Decimal Balance { get; private set; }
         public Decimal AvailableBalance => Balance - 10000;
-
+        public Boolean isPaied { get; private set; }
 
 
 
@@ -42,6 +43,7 @@ namespace MakFood.Wallet.Domain.Model.Entities
         public void Apply<T>(T @event) where T : WalletEvent
         {
             Apply((dynamic)@event);
+
         }
 
 
@@ -62,6 +64,18 @@ namespace MakFood.Wallet.Domain.Model.Entities
             this.Balance -= @event.Amount;
             _events.Add(@event);
         }
+
+        
+        public void Replay(List<WalletEvent> events)
+        {
+            this.Balance = 0;
+
+            foreach (var ev in events) 
+            {
+                Apply(ev);
+
+            }
+        } 
 
 
 
