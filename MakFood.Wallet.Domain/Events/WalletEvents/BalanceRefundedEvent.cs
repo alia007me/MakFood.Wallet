@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Domain.Model.Events.WalletEvents
 {
-    public class MoneyRefundedEvent : WalletEvent
+    public class BalanceRefundedEvent : WalletEvent
     {
-        public MoneyRefundedEvent(decimal amount, Accounts toAccount)
+        public BalanceRefundedEvent(decimal amount, string toAccount)
         {
             Amount = amount;
             ToAccount = toAccount;
         }
 
         public decimal Amount { get; set; }
-        public Accounts ToAccount { get; set; }
+        public string ToAccount { get; set; }
     }
 }

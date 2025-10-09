@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Wallet.Infrastructure.Repositories.ServiceDtos
+namespace MakFood.Wallet.Application.Dtos.ServiceDtos
 {
     public class ZarinpalPaymentRequestDto
     {

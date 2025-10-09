@@ -21,14 +21,7 @@ namespace MakFood.Wallet.Infrastructure.Context.Configurations
 
 
 
-            builder.HasMany(w => w.Accounts)
-                .WithOne(a => a.Wallet)
-                .HasForeignKey(a => a.WalletId)
-                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(w => w.OrderDetails)
-                .WithOne(o => o.Wallet)
-                .HasForeignKey(o => o.WalletId);
 
         }
     }

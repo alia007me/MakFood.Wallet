@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Domain.Model.Enums
 {
-    public enum PaymentType
+    public enum OfflineTransactionApprover
     {
-        Single,
-        With1Partner,
+        Shirkhodae,
+        Dehghan,
+        Sadeghikia,
+        Taee,
+        Khale
     }
 }

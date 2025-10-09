@@ -25,6 +25,5 @@ namespace MakFood.Wallet.Domain.Model.Entities
 
 
         public Guid WalletId { get; private set; }
-        public Wallet Wallet { get; private set; }
     }
 }

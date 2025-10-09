@@ -1,11 +1,11 @@
-﻿using MakFood.Wallet.Infrastructure.Repositories.ServiceDtos;
+﻿using MakFood.Wallet.Application.Dtos.ServiceDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Wallet.Infrastructure.Repositories.ServiceContracts
+namespace MakFood.Wallet.Application.ServiceContracts
 {
     public interface IZarinpalGateway
     {

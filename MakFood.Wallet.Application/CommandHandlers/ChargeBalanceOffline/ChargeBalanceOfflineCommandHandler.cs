@@ -1,5 +1,7 @@
 ﻿using MakFood.Wallet.Application.CommandHandlers.RobertInaroAzAvalBiar;
 using MakFood.Wallet.Domain.Model.Contracts;
+using MakFood.Wallet.Domain.Model.Enums;
+using MakFood.Wallet.Domain.Model.Events.WalletEvents;
 using MakFood.Wallet.Domain.Model.Services.Contract;
 using MakFood.Wallet.Infrastructure.Context;
 using MediatR;
@@ -15,15 +17,13 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline
     public class ChargeBalanceOfflineCommandHandler : IRequestHandler<ChargeBalanceOfflineCommand, ChargeBalanceOfflineCommandResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ITransactionRepository _transactionRepository;
-        private readonly IChargeWalletRepository _chargeWalletRepository;
+        private readonly IWalletRepository _chargeWalletRepository;
         private readonly IOfflineTransactionNumberGenerator _transactionNumberGenerator;
 
-        public ChargeBalanceOfflineCommandHandler(IUnitOfWork unitOfWork, ITransactionRepository transactionRepository,
-            IChargeWalletRepository chargeWalletRepository, IOfflineTransactionNumberGenerator transactionNumberGenerator)
+        public ChargeBalanceOfflineCommandHandler(IUnitOfWork unitOfWork,
+            IWalletRepository chargeWalletRepository, IOfflineTransactionNumberGenerator transactionNumberGenerator)
         {
             _unitOfWork = unitOfWork;
-            _transactionRepository = transactionRepository;
             _chargeWalletRepository = chargeWalletRepository;
             _transactionNumberGenerator = transactionNumberGenerator;
         }
@@ -31,8 +31,12 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline
         public async Task<ChargeBalanceOfflineCommandResponse> Handle(ChargeBalanceOfflineCommand request, CancellationToken cancellationToken)
         {
             var transactionNumber = _transactionNumberGenerator.GenerateTransactionNumber();
-            await _transactionRepository.AddTransactionAsync(request.Walletid,transactionNumber, request.Amount,
-                Domain.Model.Enums.PaymentMethod.Offline, DateTime.Now, Domain.Model.Enums.PaymentStatus.Pending);
+            var wallet = await _chargeWalletRepository.GetWalletById(request.Walletid ,cancellationToken);
+            
+            wallet.Apply(new BalanceIncreasedOfflineWaitingForApproveEvent(request.Amount));
+            await _chargeWalletRepository.AddTransactionAsync(request.Walletid,transactionNumber, request.Amount,
+                PaymentMethod.Offline, DateTime.Now, PaymentStatus.Pending);
+
 
             var response = new ChargeBalanceOfflineCommandResponse()
             {

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Domain.Model.Contracts
 {
-    public interface ITransactionRepository
+    public interface IWalletRepository
     {
-        Task AddTransactionAsync(Guid walletid,string transactionNumber, Decimal transactionAmount 
-            , PaymentMethod paymentMethod , DateTime dateTime , PaymentStatus paymentStatus);
+        Task<Domain.Model.Entities.Wallet> GetWalletById(Guid Id,CancellationToken ct);
+        Task AddTransactionAsync(Guid walletid, string transactionNumber, Decimal transactionAmount
+    , PaymentMethod paymentMethod, DateTime dateTime, PaymentStatus paymentStatus);
         Task<Transaction> GetTransactionAsync(string transactionNumber);
-
     }
 }

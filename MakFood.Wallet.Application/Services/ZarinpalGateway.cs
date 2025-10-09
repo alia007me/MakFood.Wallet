@@ -1,6 +1,6 @@
-﻿using MakFood.Wallet.Infrastructure.Context;
-using MakFood.Wallet.Infrastructure.Repositories.ServiceContracts;
-using MakFood.Wallet.Infrastructure.Repositories.ServiceDtos;
+﻿using MakFood.Wallet.Application.Dtos.ServiceDtos;
+using MakFood.Wallet.Application.ServiceContracts;
+using MakFood.Wallet.Infrastructure.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Wallet.Infrastructure.Repositories.Services
+namespace MakFood.Wallet.Application.Services
 {
     public class ZarinpalGateway : IZarinpalGateway
     {
