@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
 {
-    public class ChargeBalanceOnlineCommand : CommandBase, IRequest<ChargeBalanceOnlineCommandResponse>
+    public class ChargeBalanceOnlineCommand : QueryBase, IRequest<ChargeBalanceOnlineCommandResponse>
     {
         public Guid Id { get; set; }
         public Decimal Amount { get; set; }
