@@ -19,7 +19,6 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChefApprove
 
         public override void Validate()
         {
-            new ApproveCommandValidator().Validate(this).ThrowIfNeeded();
         }
 
     }

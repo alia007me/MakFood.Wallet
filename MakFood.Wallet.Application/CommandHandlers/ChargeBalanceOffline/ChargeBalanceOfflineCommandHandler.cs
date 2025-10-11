@@ -17,14 +17,14 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline
     public class ChargeBalanceOfflineCommandHandler : IRequestHandler<ChargeBalanceOfflineCommand, ChargeBalanceOfflineCommandResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IWalletRepository _chargeWalletRepository;
+        private readonly IWalletRepository _walletRepository;
         private readonly IOfflineTransactionNumberGenerator _transactionNumberGenerator;
 
         public ChargeBalanceOfflineCommandHandler(IUnitOfWork unitOfWork,
-            IWalletRepository chargeWalletRepository, IOfflineTransactionNumberGenerator transactionNumberGenerator)
+            IWalletRepository walletRepository, IOfflineTransactionNumberGenerator transactionNumberGenerator)
         {
             _unitOfWork = unitOfWork;
-            _chargeWalletRepository = chargeWalletRepository;
+            _walletRepository = walletRepository;
             _transactionNumberGenerator = transactionNumberGenerator;
         }
 
@@ -52,14 +52,14 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline
         #region Private Methods
         private async Task<Wallet.Domain.Model.Entities.Wallet> GetWallet(Guid walletid, CancellationToken ct)
         {
-            var wallet = await _chargeWalletRepository.GetWalletById(walletid, ct);
+            var wallet = await _walletRepository.GetWalletById(walletid, ct);
             if (wallet == null) { throw new Exception("WalletNotFound"); }
             return wallet;
         }
 
         private void AddOneTransaction(Guid walletid,string transactionNumber,decimal amount)
         {
-             _chargeWalletRepository.AddTransaction(walletid, transactionNumber, amount,
+             _walletRepository.AddTransaction(walletid, transactionNumber, amount,
                                         PaymentMethod.Offline, DateTime.Now, PaymentStatus.Pending);
         }
         #endregion

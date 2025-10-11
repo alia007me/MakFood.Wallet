@@ -66,7 +66,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChefApprove
             var approver = CheckApprover(request.Approver);
 
             wallet.Apply(new BalanceIncreasedOfflineEvent(transaction.Amount,approver));
-            transaction.UpdateTransacationStatusToDone();
+            transaction.Done();
 
             var response = new ApproveCommandResponse()
             {               

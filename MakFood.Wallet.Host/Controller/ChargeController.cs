@@ -49,7 +49,6 @@ namespace MakFood.Wallet.Host.Controller
         public async Task<IActionResult> ChefApprove([FromBody] ApproveCommand chefApprove , CancellationToken ct)
         {
 
-            chefApprove.Validate();
             var result = await _mediator.Send(chefApprove);
             await _unitOfWork.Commit(ct);
 
