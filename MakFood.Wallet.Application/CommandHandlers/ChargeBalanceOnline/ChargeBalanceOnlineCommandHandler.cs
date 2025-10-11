@@ -16,12 +16,14 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWalletRepository _WalletRepo;
         private readonly IZarinpalGateway _zarinpalGateway;
+        private readonly ITransactionRepository _transactionRepository;
 
         public ChargeBalanceOnlineCommandHandler(IUnitOfWork unitOfWork, IWalletRepository WalletRepo, IZarinpalGateway zarinpalGateway)
         {
             _unitOfWork = unitOfWork;
             _WalletRepo = WalletRepo;
             _zarinpalGateway = zarinpalGateway;
+            _transactionRepository = transactionRepository;
         }
 
         public async Task<ChargeBalanceOnlineCommandResponse> Handle(ChargeBalanceOnlineCommand request, CancellationToken cancellationToken)

@@ -73,8 +73,6 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
 
                     b.HasKey("AccountId");
 
-                    b.HasIndex("WalletId");
-
                     b.ToTable("Accounts", (string)null);
                 });
 
@@ -126,8 +124,6 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("OrderDetailId");
-
-                    b.HasIndex("WalletId");
 
                     b.ToTable("OrderDetails", (string)null);
                 });
@@ -196,6 +192,8 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                         .HasForeignKey("WalletId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Wallet");
                 });
 
             modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.OrderDetails", b =>

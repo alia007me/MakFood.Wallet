@@ -37,5 +37,7 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
             var result = await _context.Transactions.SingleOrDefaultAsync(x => x.TransactionNumber == authority);
             return result;
         }
+
+
     }
 }
