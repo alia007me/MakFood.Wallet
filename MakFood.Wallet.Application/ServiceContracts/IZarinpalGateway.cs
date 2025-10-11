@@ -1,0 +1,16 @@
+﻿using MakFood.Wallet.Application.Dtos.ServiceDtos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MakFood.Wallet.Application.ServiceContracts
+{
+    public interface IZarinpalGateway
+    {
+        Task<ZarinpalRequestResponse> PayRequest(decimal amount, string email, string description);
+        Task<ZarinpalVerifyResponse> VerifyTransactionFromZarinpal(string authority, decimal amount);
+
+    }
+}
