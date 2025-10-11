@@ -12,7 +12,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
         public ChargeBalanceOnlineCommandValidator()
         {
             RuleFor(x => x.Amount).NotEmpty().WithMessage("Please Enter The Amount You Want To Charge !")
-                    .GreaterThan(100000).WithMessage("Amount Must Be More Than 100000IRR");
+                    .GreaterThan(0).WithMessage("Amount Must Be More Than 0IRR");
 
             RuleFor(x => x.Email)
                     .NotEmpty().WithMessage("Email shouldn't be empty")

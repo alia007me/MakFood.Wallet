@@ -1,9 +1,8 @@
 ﻿using MakFood.Wallet.Application.CommandHandlers.ZarinpalPayRequest;
 using MakFood.Wallet.Application.CommandHandlers.ZarinpalVerify;
+using MakFood.Wallet.Application.ServiceContracts;
 using MakFood.Wallet.Domain.Model.Contracts;
 using MakFood.Wallet.Infrastructure.Context;
-using MakFood.Wallet.Infrastructure.Repositories.ServiceContracts;
-using MakFood.Wallet.Infrastructure.Repositories.ServiceDtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +14,7 @@ namespace MakFood.Wallet.Host.Controller
     public class ZarinpalController : ControllerBase
     {
         private readonly IZarinpalGateway _gateway;
-        private readonly IChargeWalletRepository _chargeRepository;
+        private readonly IWalletRepository _chargeRepository;
         private readonly IHttpClientFactory _clientFactory;
         private readonly MakFoodWalletDbContext _context;
         private readonly IMediator _mediator;
@@ -23,7 +22,7 @@ namespace MakFood.Wallet.Host.Controller
         private readonly string _merchent_id = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
 
 
-        public ZarinpalController(IZarinpalGateway gateway, IChargeWalletRepository chargeRepository, IHttpClientFactory clientFactory, MakFoodWalletDbContext context, IMediator mediator, IUnitOfWork unitOfWork)
+        public ZarinpalController(IZarinpalGateway gateway, IWalletRepository chargeRepository, IHttpClientFactory clientFactory, MakFoodWalletDbContext context, IMediator mediator, IUnitOfWork unitOfWork)
         {
             _gateway = gateway;
             _chargeRepository = chargeRepository;
@@ -48,7 +47,7 @@ namespace MakFood.Wallet.Host.Controller
 
 
 
-            var request = new ZarinpalVerifyCommand() { authority = authority, merchant_id = _merchent_id ,status = status  };
+            var request = new ZarinpalVerifyCommand() { authority = authority, merchant_id = _merchent_id };
 
 
             var result = await _mediator.Send(request);

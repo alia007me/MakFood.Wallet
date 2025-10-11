@@ -15,7 +15,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.Base.Extensions
             var errors = validationResult.Errors;
 
             if (errors.Any())
-                throw new BadRequestException(string.Join(Environment.NewLine, errors.Select(e => e.ErrorMessage)));
+                    throw new BadRequestException(string.Join(Environment.NewLine, errors.Select(e => e.ErrorMessage)));
         }
     }
 }

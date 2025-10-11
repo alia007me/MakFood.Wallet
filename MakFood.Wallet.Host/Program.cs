@@ -1,5 +1,8 @@
 using MakFood.Wallet.Application.DI;
+using MakFood.Wallet.Domain.Model.Contracts;
+using MakFood.Wallet.Domain.Model.DI;
 using MakFood.Wallet.Infrastructure.DI;
+using MakFood.Wallet.Infrastructure.Repositories.Repositories;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +13,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.InfrastructureConfiguration(builder.Configuration);
 builder.Services.ConfigureApplicationDI();
+builder.Services.DomainServiceRegistration();
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg =>
@@ -22,7 +26,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.EnableTryItOutByDefault();
+    });
 }
 
 app.UseHttpsRedirection();

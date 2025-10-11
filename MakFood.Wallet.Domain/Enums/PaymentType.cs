@@ -10,7 +10,5 @@ namespace MakFood.Wallet.Domain.Model.Enums
     {
         Single,
         With1Partner,
-        With2Partner,
-        With3Partner,
     }
 }

@@ -12,8 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Configuration;
-using MakFood.Wallet.Infrastructure.Repositories.ServiceContracts;
-using MakFood.Wallet.Infrastructure.Repositories.Services;
 using MakFood.Wallet.Domain.Model.Services.Contract;
 using MakFood.Wallet.Domain.Model.Services;
 
@@ -29,10 +27,7 @@ namespace MakFood.Wallet.Infrastructure.DI
                 options.UseSqlServer("Server=.;Database=MakFood.Wallet3;Trusted_Connection=True;TrustServerCertificate=True");
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IChargeWalletRepository, ChargeWalletRepository>();
-            services.AddScoped<ITransactionRepository, TransactionRepository>();
-            services.AddScoped<IZarinpalGateway, ZarinpalGateway>();
-            services.AddScoped<IOfflineTransactionNumberGenerator,OfflineTransactionNumberGenerator>();
+            services.AddScoped<IWalletRepository, WalletRepository>();
             services.AddHttpClient();
 
             return services;
