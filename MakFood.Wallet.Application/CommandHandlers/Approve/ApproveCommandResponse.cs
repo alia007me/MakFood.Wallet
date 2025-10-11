@@ -8,6 +8,6 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChefApprove
 {
     public class ApproveCommandResponse
     {
-        public string Message { get; set; }
+        public Guid WalletId { get; set; }
     }
 }

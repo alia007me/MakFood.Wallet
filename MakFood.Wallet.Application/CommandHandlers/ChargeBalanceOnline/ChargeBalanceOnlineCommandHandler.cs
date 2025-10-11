@@ -31,11 +31,11 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
             var result = await _zarinpalGateway.PayRequest(request.Amount, request.Email, request.Description);
             if(result.data.code == 100) 
             {
-                await _chargeWallet.AddTransactionAsync(request.Id, result.data.authority, request.Amount ,PaymentMethod.Online,DateTime.Now ,PaymentStatus.Pending);
+                _chargeWallet.AddTransaction(request.Id, result.data.authority, request.Amount ,PaymentMethod.Online,DateTime.Now ,PaymentStatus.Pending);
                 await _unitOfWork.Commit(cancellationToken);
                 var response = new ChargeBalanceOnlineCommandResponse()
                 {
-                    Message = $"https://sandbox.zarinpal.com/pg/StartPay/{result.data.authority}"
+                    authority = result.data.authority
                 };
                 return response;
             }

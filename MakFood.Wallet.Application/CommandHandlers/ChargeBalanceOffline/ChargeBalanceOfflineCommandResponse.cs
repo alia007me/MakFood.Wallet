@@ -8,6 +8,6 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline
 {
     public class ChargeBalanceOfflineCommandResponse
     {
-        public string Message { get; set; }
+        public string TransactionNumber { get; set; }
     }
 }

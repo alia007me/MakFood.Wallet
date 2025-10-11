@@ -26,16 +26,21 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
             return await _context.Wallets.SingleOrDefaultAsync(x => x.WalletId == Id,ct);
         }
 
-        public async Task AddTransactionAsync(Guid walletid, string transactionNumber, decimal transactionAmount
+        public void AddTransaction(Guid walletid, string transactionNumber, decimal transactionAmount
     , PaymentMethod paymentMethod, DateTime dateTime, PaymentStatus paymentStatus)
         {
-            await _context.Transactions.AddAsync(new Domain.Model.Entities.Transaction(walletid, transactionAmount, transactionNumber, paymentMethod, dateTime, paymentStatus));
+             _context.Transactions.Add(new Domain.Model.Entities.Transaction(walletid, transactionAmount, transactionNumber, paymentMethod, dateTime, paymentStatus));
         }
 
         public async Task<Transaction> GetTransactionAsync(string authority)
         {
             var result = await _context.Transactions.SingleOrDefaultAsync(x => x.TransactionNumber == authority);
             return result;
+        }
+
+        public uint TransactionCounts()
+        {
+            return (uint)_context.WalletEvents.Count(c => c.OccurredDateTime.Date == DateTime.Now.Date);
         }
     }
 }

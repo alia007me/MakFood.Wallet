@@ -9,5 +9,6 @@ namespace MakFood.Wallet.Domain.Model.Services.Contract
     public interface IOfflineTransactionNumberGenerator
     {
         string GenerateTransactionNumber();
+        
     }
 }

@@ -37,7 +37,7 @@ namespace MakFood.Wallet.Host.Controller
         {
 
             var result = await _mediator.Send(requestDTO);
-            return Redirect(result.PayPath);
+            return Redirect($"https://sandbox.zarinpal.com/pg/StartPay/{result.PayPath}");
 
         }
         [HttpGet("verify")]

@@ -36,7 +36,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalPayRequest
                 
                 var link = new ZarinpalPayRequestCommandResponse()
                 {
-                    PayPath = $"https://sandbox.zarinpal.com/pg/StartPay/{authority}"
+                    PayPath = authority
                 };
                 return link;
 

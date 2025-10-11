@@ -31,7 +31,7 @@ namespace MakFood.Wallet.Host.Controller
 
 
             var result = await _mediator.Send(chargeBalanceOnline);
-            return Ok(result);
+            return Ok($"https://sandbox.zarinpal.com/pg/StartPay/{result.authority}");
 
         }
         [HttpPost("Wallet/{walletId}/Balance/Increase/Offline")]
@@ -43,7 +43,7 @@ namespace MakFood.Wallet.Host.Controller
 
             var result = await _mediator.Send(chargeBalanceOffline);
             await _unitOfWork.Commit(ct);
-            return Ok(result);
+            return Ok($"Your Request Submitted . YourTransactionNumber {result.TransactionNumber}");
         }
         [HttpPatch("Wallet/{walletId}/Balance/Increase/Approve")]
         public async Task<IActionResult> ChefApprove([FromBody] ApproveCommand chefApprove , CancellationToken ct)
@@ -52,7 +52,8 @@ namespace MakFood.Wallet.Host.Controller
             chefApprove.Validate();
             var result = await _mediator.Send(chefApprove);
             await _unitOfWork.Commit(ct);
-            return Ok(result);
+
+            return Ok($"Wallet {result.WalletId} Charged Successfully ! ");
         }
     }
 }
