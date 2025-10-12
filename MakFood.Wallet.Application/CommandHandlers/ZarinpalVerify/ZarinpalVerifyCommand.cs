@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalVerify
 {
-    public class ZarinpalVerifyCommand : CommandBase,IRequest<ZarinpalVerifyCommandResponse>
+    public class ZarinpalVerifyCommand : CommandBase, IRequest<ZarinpalVerifyCommandResponse>
     {
         public string merchant_id { get; set; } = default!;
         public string authority { get; set; } = default!;

@@ -3,6 +3,7 @@ using MakFood.Wallet.Domain.Model.Events.WalletEvents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,11 +26,15 @@ namespace MakFood.Wallet.Domain.Model.Entities
         public Guid WalletId { get; private init; }
         public Guid CustomerId { get; private init; }
         public Decimal Balance { get; private set; }
+        public Decimal AvailableBalance => Balance - 10000;
+        public Boolean isPaied { get; private set; }
 
 
 
         public IList<Transaction> Transactions { get; private set; } = new List<Transaction>();
 
+        public IList<Accounts> Accounts { get; private set; } = new List<Accounts>();
+        public IList<OrderDetails> OrderDetails { get; private set; } = new List<OrderDetails>();
 
 
         public IReadOnlyList<Event> Events => _events.AsReadOnly();
@@ -59,6 +64,19 @@ namespace MakFood.Wallet.Domain.Model.Entities
             this.Balance -= @event.Amount;
             _events.Add(@event);
         }
+
+        
+        public void Replay(List<WalletEvent> events)
+        {
+            this.Balance = 0;
+
+            foreach (var ev in events) 
+            {
+                Apply(ev);
+
+            }
+        } 
+
 
         public void Apply(BalanceIncreasedOfflineWaitingForApproveEvent @event)
         {

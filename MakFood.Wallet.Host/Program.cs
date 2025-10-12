@@ -1,6 +1,8 @@
 using MakFood.Wallet.Application.DI;
+using MakFood.Wallet.Domain.Model.Contracts;
 using MakFood.Wallet.Domain.Model.DI;
 using MakFood.Wallet.Infrastructure.DI;
+using MakFood.Wallet.Infrastructure.Repositories.Repositories;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +26,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.EnableTryItOutByDefault();
+    });
 }
 
 app.UseHttpsRedirection();
