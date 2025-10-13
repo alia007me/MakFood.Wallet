@@ -73,17 +73,6 @@ namespace MakFood.Wallet.Domain.Model.Entities
         } 
 
 
-        public void Replay(List<WalletEvent> events)
-        {
-            this.Balance = 0;
-
-            foreach (var ev in events) {
-                Apply(ev);
-
-            }
-        }
-
-
         public void Apply(BalanceIncreasedOfflineWaitingForApproveEvent @event)
         {
             _events.Add(@event);
