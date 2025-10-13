@@ -27,7 +27,7 @@ namespace MakFood.Wallet.Domain.Model.Entities
         public Guid CustomerId { get; private init; }
         public Decimal Balance { get; private set; }
         public Decimal AvailableBalance => Balance - 10000;
-        public Boolean isPaied { get; private set; }
+        
 
 
 
@@ -35,7 +35,6 @@ namespace MakFood.Wallet.Domain.Model.Entities
 
         public IList<Accounts> Accounts { get; private set; } = new List<Accounts>();
         public IList<OrderDetails> OrderDetails { get; private set; } = new List<OrderDetails>();
-        //public IList<>
 
         public IReadOnlyList<Event> Events => _events.AsReadOnly();
 
@@ -87,14 +86,5 @@ namespace MakFood.Wallet.Domain.Model.Entities
             this.Balance += @event.Amount;
             _events.Add(@event);
         }
-
-
-
-
-
-
-
-
-
     }
 }

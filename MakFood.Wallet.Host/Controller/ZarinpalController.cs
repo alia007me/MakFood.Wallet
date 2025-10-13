@@ -53,13 +53,13 @@ namespace MakFood.Wallet.Host.Controller
             var result = await _mediator.Send(request);
             if (result.message.Contains("SuccessFully"))
             {
-                await _unitOfWork.Commit(ct);
+                await _unitOfWork.AddEventSourcesCommit(ct);
                 return Ok(result.message);
 
             }
 
             else if(result.message.Contains("Cancelled")) {
-                await _unitOfWork.Commit(ct);
+                await _unitOfWork.AddEventSourcesCommit(ct);
                 return BadRequest(result.message);
             }
             else

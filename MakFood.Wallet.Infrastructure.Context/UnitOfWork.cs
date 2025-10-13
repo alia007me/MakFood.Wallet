@@ -16,8 +16,11 @@ namespace MakFood.Wallet.Infrastructure.Context
         {
             _context = context;
         }
+        public async Task<int> Commit(CancellationToken ct) {
+            return await _context.SaveChangesAsync(ct);
+        }
 
-        public async Task<int> Commit(CancellationToken ct)
+        public async Task<int> AddEventSourcesCommit(CancellationToken ct)
         {
             AddEventSources();
             return await _context.SaveChangesAsync(ct);

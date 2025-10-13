@@ -20,12 +20,12 @@ namespace MakFood.Wallet.Infrastructure.Context.Configurations
                 .HasColumnType("decimal(18,2)")
                 .IsRequired();
 
-            builder.Property(o => o.TotalPaid)
-                .HasColumnType("decimal(18,2)")
-                .IsRequired();
+            //builder.Property(o => o.TotalPaid)
+            //    .HasColumnType("decimal(18,2)")
+            //    .IsRequired();
 
-            builder.Property(o => o.PaymentType)
-                .IsRequired();
+            //builder.Property(o => o.PaymentType)
+            //    .IsRequired();
 
             builder.Property(o => o.DiscountCodeID)
                 .IsRequired();

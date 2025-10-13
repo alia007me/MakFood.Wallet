@@ -42,7 +42,7 @@ namespace MakFood.Wallet.Host.Controller
 
 
             var result = await _mediator.Send(chargeBalanceOffline);
-            await _unitOfWork.Commit(ct);
+            await _unitOfWork.AddEventSourcesCommit(ct);
             return Ok(result);
         }
         [HttpPatch("Wallet/{walletId}/Balance/Increase/Approve")]
@@ -51,7 +51,7 @@ namespace MakFood.Wallet.Host.Controller
 
             chefApprove.Validate();
             var result = await _mediator.Send(chefApprove);
-            await _unitOfWork.Commit(ct);
+            await _unitOfWork.AddEventSourcesCommit(ct);
             return Ok(result);
         }
     }

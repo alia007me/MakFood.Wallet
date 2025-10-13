@@ -16,14 +16,14 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWalletRepository _WalletRepo;
         private readonly IZarinpalGateway _zarinpalGateway;
-        private readonly ITransactionRepository _transactionRepository;
+    //    private readonly ITransactionRepository _transactionRepository;
 
         public ChargeBalanceOnlineCommandHandler(IUnitOfWork unitOfWork, IWalletRepository WalletRepo, IZarinpalGateway zarinpalGateway)
         {
             _unitOfWork = unitOfWork;
             _WalletRepo = WalletRepo;
             _zarinpalGateway = zarinpalGateway;
-            _transactionRepository = transactionRepository;
+        //   _transactionRepository = transactionRepository;
         }
 
         public async Task<ChargeBalanceOnlineCommandResponse> Handle(ChargeBalanceOnlineCommand request, CancellationToken cancellationToken)
@@ -34,7 +34,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
             if(result.data.code == 100) 
             {
                 await _WalletRepo.AddTransactionAsync(request.Id, result.data.authority, request.Amount ,PaymentMethod.Online,DateTime.Now ,PaymentStatus.Pending);
-                await _unitOfWork.Commit(cancellationToken);
+                await _unitOfWork.AddEventSourcesCommit(cancellationToken);
                 var response = new ChargeBalanceOnlineCommandResponse()
                 {
                     Message = $"https://sandbox.zarinpal.com/pg/StartPay/{result.data.authority}"

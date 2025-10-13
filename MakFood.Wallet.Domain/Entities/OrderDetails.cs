@@ -22,5 +22,6 @@ namespace MakFood.Wallet.Domain.Model.Entities
         //public PaymentType PaymentType { get; private set; }
         public Decimal TotalAmount { get; private set; }
         public Guid WalletId { get; private set; }
+        public Boolean isPaied { get; private set; }
     }
 }
