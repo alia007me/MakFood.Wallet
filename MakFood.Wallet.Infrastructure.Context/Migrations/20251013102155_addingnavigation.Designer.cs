@@ -4,6 +4,7 @@ using MakFood.Wallet.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakFood.Wallet.Infrastructure.Context.Migrations
 {
     [DbContext(typeof(MakFoodWalletDbContext))]
-    partial class MakFoodWalletDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251013102155_addingnavigation")]
+    partial class addingnavigation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,18 +119,16 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                     b.Property<decimal>("OrderAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("TotalAmount")
+                    b.Property<int>("PaymentType")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalPaid")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("WalletId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("isPaied")
-                        .HasColumnType("bit");
-
                     b.HasKey("OrderDetailId");
-
-                    b.HasIndex("WalletId");
 
                     b.ToTable("OrderDetails", (string)null);
                 });
@@ -195,15 +196,6 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.OrderDetails", b =>
-                {
-                    b.HasOne("MakFood.Wallet.Domain.Model.Entities.Wallet", null)
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Transaction", b =>
                 {
                     b.HasOne("MakFood.Wallet.Domain.Model.Entities.Wallet", null)
@@ -216,8 +208,6 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
             modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Wallet", b =>
                 {
                     b.Navigation("Accounts");
-
-                    b.Navigation("OrderDetails");
 
                     b.Navigation("Transactions");
                 });
