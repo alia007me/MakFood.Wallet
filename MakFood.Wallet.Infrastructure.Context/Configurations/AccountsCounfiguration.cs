@@ -1,4 +1,5 @@
-﻿using MakFood.Wallet.Domain.Model.Entities;
+﻿
+using MakFood.Wallet.Domain.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Infrastructure.Context.Configurations
 {
-    public class AccountConfiguration : IEntityTypeConfiguration<Accounts>
+    public class AccountConfiguration : IEntityTypeConfiguration<Account>
     {
-        public void Configure(EntityTypeBuilder<Accounts> builder)
+        public void Configure(EntityTypeBuilder<Account> builder)
         {
             builder.ToTable("Accounts");
             builder.HasKey(a => a.AccountId);
