@@ -12,12 +12,10 @@ namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalPayRequest
 {
     public class ZarinpalPayRequestCommandHandler : IRequestHandler<ZarinpalPayRequestCommand, ZarinpalPayRequestCommandResponse>
     {
-        private readonly IWalletRepository _chargeRep;
         private readonly IZarinpalGateway _zarinpalGateway;
         private readonly IUnitOfWork _unitOfWork;
-        public ZarinpalPayRequestCommandHandler(IWalletRepository chargeRep, IZarinpalGateway zarinpalGateway, IUnitOfWork unitOfWork)
+        public ZarinpalPayRequestCommandHandler(IZarinpalGateway zarinpalGateway, IUnitOfWork unitOfWork)
         {
-            _chargeRep = chargeRep;
             _zarinpalGateway = zarinpalGateway;
             _unitOfWork = unitOfWork;
         }
@@ -36,7 +34,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalPayRequest
                 
                 var link = new ZarinpalPayRequestCommandResponse()
                 {
-                    PayPath = $"https://sandbox.zarinpal.com/pg/StartPay/{authority}"
+                    PayPath = authority
                 };
                 return link;
 

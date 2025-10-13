@@ -31,28 +31,29 @@ namespace MakFood.Wallet.Host.Controller
 
 
             var result = await _mediator.Send(chargeBalanceOnline);
-            return Ok(result);
+            return Ok($"https://sandbox.zarinpal.com/pg/StartPay/{result.authority}");
 
         }
         [HttpPost("Wallet/{walletId}/Balance/Increase/Offline")]
         public async Task<IActionResult> ChargeOfflineWallet([FromBody] ChargeBalanceOfflineCommand chargeBalanceOffline , CancellationToken ct)
         {
             chargeBalanceOffline.Validate();
-
-
-
             var result = await _mediator.Send(chargeBalanceOffline);
+
             await _unitOfWork.AddEventSourcesCommit(ct);
-            return Ok(result);
+
+            return Ok($"Your Request Submitted . YourTransactionNumber {result.TransactionNumber}");
         }
         [HttpPatch("Wallet/{walletId}/Balance/Increase/Approve")]
         public async Task<IActionResult> ChefApprove([FromBody] ApproveCommand chefApprove , CancellationToken ct)
         {
 
-            chefApprove.Validate();
             var result = await _mediator.Send(chefApprove);
+
             await _unitOfWork.AddEventSourcesCommit(ct);
-            return Ok(result);
+
+            return Ok($"Wallet {result.WalletId} Charged Successfully ! ");
+
         }
     }
 }

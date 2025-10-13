@@ -33,12 +33,12 @@ namespace MakFood.Wallet.Domain.Model.Entities
             TransactionNumber = transactionNumber;
         }
 
-        public void UpdateTransacationStatusToDone()
+        public void Done()
         {
             Status = PaymentStatus.Done;
         }
 
-        public void UpdateTransactionStatusToCancelled()
+        public void Cancelled()
         {
             Status = PaymentStatus.Cancelled;
         }

@@ -15,28 +15,28 @@ namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalVerify
 {
     public class ZarinpalVerifyCommandHandler : IRequestHandler<ZarinpalVerifyCommand, ZarinpalVerifyCommandResponse>
     {
-        private readonly IWalletRepository _chargeWalletRepository;
+        private readonly IWalletRepository _walletRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IZarinpalGateway _zarinpalGateway;
 
-        public ZarinpalVerifyCommandHandler( IWalletRepository chargeWalletRepository, IUnitOfWork unitOfWork, IZarinpalGateway zarinpalGateway)
+        public ZarinpalVerifyCommandHandler( IWalletRepository walletRepository, IUnitOfWork unitOfWork, IZarinpalGateway zarinpalGateway)
         {
-            _chargeWalletRepository = chargeWalletRepository;
+            _walletRepository = walletRepository;
             _unitOfWork = unitOfWork;
             _zarinpalGateway = zarinpalGateway;
         }
 
         public async Task<ZarinpalVerifyCommandResponse> Handle(ZarinpalVerifyCommand request, CancellationToken cancellationToken)
         {
-            var transaction = await _chargeWalletRepository.GetTransactionAsync(request.authority);
+            var transaction = await _walletRepository.GetTransactionAsync(request.authority);
             if (transaction == null)
                 throw new Exception("TransactionNotFound");
-            var wallet = await _chargeWalletRepository.GetWalletById(transaction.WalletId, cancellationToken);
+            var wallet = await _walletRepository.GetWalletById(transaction.WalletId, cancellationToken);
             if (wallet == null) throw new Exception("WalletNotFound");
 
             if (request.status != "OK")
             {
-                transaction.UpdateTransactionStatusToCancelled();
+                transaction.Cancelled();
                 var response = new ZarinpalVerifyCommandResponse() { message = "Transaction Cancelled" };
                 return response;
             }
@@ -46,7 +46,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalVerify
             {
                 wallet.Apply(new BalanceIncreasedOnlineEvent(transaction.Amount, PaymentMethod.Online));
                 transaction.UpdateTransactionNumber(result.data.ref_id.ToString());
-                transaction.UpdateTransacationStatusToDone();
+                transaction.Done();
                 var response = new ZarinpalVerifyCommandResponse()
                 {
                     message = $"Transaction Completed SuccessFully .  TransactionNumber : {result.data.ref_id}"

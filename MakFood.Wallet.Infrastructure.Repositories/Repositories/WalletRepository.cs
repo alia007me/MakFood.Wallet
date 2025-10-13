@@ -34,10 +34,10 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
         }
 
 
-        public async Task AddTransactionAsync(Guid walletid, string transactionNumber, decimal transactionAmount
+        public void AddTransaction(Guid walletid, string transactionNumber, decimal transactionAmount
     , PaymentMethod paymentMethod, DateTime dateTime, PaymentStatus paymentStatus)
         {
-            await _context.Transactions.AddAsync(new Transaction(walletid, transactionAmount, transactionNumber, paymentMethod, dateTime, paymentStatus));
+             _context.Transactions.Add(new Domain.Model.Entities.Transaction(walletid, transactionAmount, transactionNumber, paymentMethod, dateTime, paymentStatus));
         }
 
         public async Task<Transaction> GetTransactionAsync(string authority)
@@ -46,6 +46,11 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
             return result;
         }
 
+
+        public uint TransactionCounts()
+        {
+            return (uint)_context.WalletEvents.Count(c => c.OccurredDateTime.Date == DateTime.Now.Date);
+        }
 
     }
 }

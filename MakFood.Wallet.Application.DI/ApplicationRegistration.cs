@@ -31,9 +31,7 @@ namespace MakFood.Wallet.Application.DI
 
 
             services.AddValidatorsFromAssemblyContaining<ChargeBalanceOnlineCommandValidator>();
-            services.AddValidatorsFromAssemblyContaining<ChargeBalanceOfflineCommandValidator>();
-            services.AddValidatorsFromAssemblyContaining<ApproveCommandValidator>();
-            services.AddValidatorsFromAssemblyContaining<ZarinpalPayRequestCommandValidator>();
+
 
 
 
