@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MakFood.Wallet.Infrastructure.Context.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDbContext : Migration
+    public partial class Test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,34 +28,19 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transactions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TransactionNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "WalletEvents",
                 columns: table => new
                 {
-                    WalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EventName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OccurredDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WalletEvents", x => x.WalletId);
+                    table.PrimaryKey("PK_WalletEvents", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,7 +64,7 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     AccountNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     ExpiredDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    WalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    WalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,15 +84,39 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                     OrderDetailId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DiscountCodeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PaymentType = table.Column<int>(type: "int", nullable: false),
-                    TotalPaid = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    WalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    WalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    isPaied = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderDetails", x => x.OrderDetailId);
                     table.ForeignKey(
                         name: "FK_OrderDetails_Wallets_WalletId",
+                        column: x => x.WalletId,
+                        principalTable: "Wallets",
+                        principalColumn: "WalletId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WalletId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TransactionNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Wallets_WalletId",
                         column: x => x.WalletId,
                         principalTable: "Wallets",
                         principalColumn: "WalletId",
@@ -122,6 +131,11 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_WalletId",
                 table: "OrderDetails",
+                column: "WalletId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_WalletId",
+                table: "Transactions",
                 column: "WalletId");
         }
 

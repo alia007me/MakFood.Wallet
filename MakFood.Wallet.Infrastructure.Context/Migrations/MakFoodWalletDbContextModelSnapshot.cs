@@ -49,7 +49,7 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                     b.ToTable("WalletEvents");
                 });
 
-            modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Accounts", b =>
+            modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Account", b =>
                 {
                     b.Property<Guid>("AccountId")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("WalletId")
+                    b.Property<Guid?>("WalletId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("AccountId");
@@ -186,13 +186,12 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                     b.ToTable("Wallets", (string)null);
                 });
 
-            modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Accounts", b =>
+            modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Account", b =>
                 {
                     b.HasOne("MakFood.Wallet.Domain.Model.Entities.Wallet", null)
                         .WithMany("Accounts")
                         .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.OrderDetails", b =>
