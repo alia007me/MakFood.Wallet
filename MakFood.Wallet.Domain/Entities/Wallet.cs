@@ -34,7 +34,6 @@ namespace MakFood.Wallet.Domain.Model.Entities
         public IList<Transaction> Transactions { get; private set; } = new List<Transaction>();
         public IList<Accounts> Accounts { get; private set; } = new List<Accounts>();
 
-        public IList<Accounts> Accounts { get; private set; } = new List<Accounts>();
         public IList<OrderDetails> OrderDetails { get; private set; } = new List<OrderDetails>();
 
         public IReadOnlyList<Event> Events => _events.AsReadOnly();
