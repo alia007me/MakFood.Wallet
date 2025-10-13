@@ -26,7 +26,6 @@ namespace MakFood.Wallet.Domain.Model.Entities
         public Guid WalletId { get; private init; }
         public Guid CustomerId { get; private init; }
         public Decimal Balance { get; private set; }
-        public Decimal AvailableBalance => Balance - 10000;
         
 
 
