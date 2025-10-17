@@ -17,22 +17,21 @@ namespace MakFood.Wallet.Domain.Model.Entities
 
 
         private Wallet() { }
-        public Wallet(Guid CustomerId, Decimal Balance, Decimal AvailableBalance)
+        public Wallet(Guid CustomerId)
         {
             this.CustomerId = CustomerId;
-            this.Balance = Balance;
-
+            this.WalletId = CustomerId;
         }
         public Guid WalletId { get; private init; }
         public Guid CustomerId { get; private init; }
-        public Decimal Balance { get; private set; }
+        public Decimal Balance { get; private set; }= Decimal.Zero;
         
 
 
-        public IList<Transaction> Transactions { get; private set; } = new List<Transaction>();
-        public IList<Account> Accounts { get; private set; } = new List<Account>();
+        public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
+        public List<Account> Accounts { get; private set; } = new List<Account>();
 
-        public IList<OrderDetails> OrderDetails { get; private set; } = new List<OrderDetails>();
+        public List<OrderDetails> OrderDetails { get; private set; } = new List<OrderDetails>();
 
         public IReadOnlyList<Event> Events => _events.AsReadOnly();
 

@@ -25,11 +25,12 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
         public async Task<List<EventSource>> GetWaletEvent(Guid id, DateTime time,CancellationToken ct)
         {
             var eventSources = await _context.WalletEvents.Where(c => c.OccurredDateTime <= time && c.WalletId == id)
-                                                    .OrderBy(c => c.OccurredDateTime)
-                                                    .ToListAsync(ct);
+                                                          .OrderBy(c => c.OccurredDateTime)
+                                                          .ToListAsync(ct);
                                                     
             return eventSources;
         }
+  
 
     }
 }

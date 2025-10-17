@@ -4,6 +4,7 @@ using MakFood.Wallet.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakFood.Wallet.Infrastructure.Context.Migrations
 {
     [DbContext(typeof(MakFoodWalletDbContext))]
-    partial class MakFoodWalletDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251017172728_test3")]
+    partial class test3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,8 +201,7 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                 {
                     b.HasOne("MakFood.Wallet.Domain.Model.Entities.Wallet", null)
                         .WithMany("OrderDetails")
-                        .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("WalletId");
                 });
 
             modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Transaction", b =>

@@ -15,7 +15,7 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                 name: "DiscountCodes",
                 columns: table => new
                 {
-                    DiscountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DiscountId = table.Column<Guid?>(type: "uniqueidentifier", nullable: false),
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MaximumDiscount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MinimumDiscount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),

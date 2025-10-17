@@ -8,7 +8,8 @@ namespace MakFood.Wallet.Domain.Model.Entities
 {
     public class DiscountCode
     {
-        public DiscountCode(Guid CustomerId, decimal MaximumDiscount, decimal MinimumDiscount, float Percentage, DateOnly ExpirationDate)
+        public DiscountCode(Guid CustomerId, decimal MaximumDiscount, decimal MinimumDiscount
+            , float Percentage, DateOnly ExpirationDate)
         {
             this.CustomerId = CustomerId;
             this.MaximumDiscount = MaximumDiscount;

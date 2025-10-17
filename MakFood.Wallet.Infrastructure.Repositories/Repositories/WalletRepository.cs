@@ -20,11 +20,20 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
             _context = context;
         }
 
-
-        public async Task<Domain.Model.Entities.Wallet> GetWalletById(Guid Id, CancellationToken ct)
+      
+  
+        public async Task AddWallet(Guid CustomerId)
         {
-            return await _context.Wallets.SingleOrDefaultAsync(x => x.WalletId == Id, ct);
+            _context.Wallets.Add (new Domain.Model.Entities.Wallet(CustomerId));
         }
+
+       public async Task<Domain.Model.Entities.Wallet> GetWalletById(Guid Id, CancellationToken ct)
+        {
+            return await _context.Wallets
+                .Include(w => w.OrderDetails)
+                .SingleOrDefaultAsync(x => x.WalletId == Id, ct);
+        }
+
         public async Task UpdateWalletBalanceAsync(Domain.Model.Entities.Wallet wallet, CancellationToken ct)
         {
             _context.Wallets.Attach(wallet);
