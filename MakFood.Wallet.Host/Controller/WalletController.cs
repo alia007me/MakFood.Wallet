@@ -1,8 +1,10 @@
-﻿using MakFood.Wallet.Application.CommandHandlers.AddOrderDeatails;
+﻿using MakFood.Wallet.Application.CommandHandlers;
+using MakFood.Wallet.Application.CommandHandlers.AddOrderDeatails;
 using MakFood.Wallet.Application.CommandHandlers.AddWalet;
 using MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline;
 using MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline;
 using MakFood.Wallet.Application.CommandHandlers.ChefApprove;
+using MakFood.Wallet.Application.CommandHandlers.PayOrderDeatails;
 using MakFood.Wallet.Domain.Model.Contracts;
 using MakFood.Wallet.Infrastructure.Context;
 using MediatR;
@@ -22,7 +24,13 @@ namespace MakFood.Wallet.Host.Controller
             _mediator = mediator;
             _unitOfWork = unitOfWork;
         }
-        [HttpPost("Wallet/{custumerId}")]
+        [HttpPost("Wallet/{walletId}/OrderDetail/{orderDetailId}/pay")]
+        public async Task<IActionResult> PayOrder([FromBody] PayOrderDeatailComand command, CancellationToken ct)
+        {
+            var result = await _mediator.Send(command, ct);
+            return Ok(result.response);
+        }
+            [HttpPost("Wallet/{custumerId}")]
         public async Task<IActionResult> AddWallet([FromBody] AddWalletCommand addWalletCommand)
         {
             addWalletCommand.Validate();

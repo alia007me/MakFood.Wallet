@@ -14,14 +14,12 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Application.CommandHandlers
 {
-    public class PayOrderDeatailComand: CommandBase, IRequest<PayOrderDeatailComandRespone>
+    public class PayOrderDeatailComandvalidator : AbstractValidator<PayOrderDeatailComand>
     {
-        public Guid WalletID { get; set; }
-        public Guid OrdearDeatais { get; set; }
-        public override void Validate()
+        public PayOrderDeatailComandvalidator()
         {
-            new PayOrderDeatailComandvalidator().Validate(this).ThrowIfNeeded();
-        }
- 
+            RuleFor(X => X.WalletID).NotEmpty().NotNull();
+            RuleFor(X => X.OrdearDeatais).NotEmpty().NotNull();
+        } 
     }
 }
