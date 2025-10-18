@@ -10,5 +10,6 @@ namespace MakFood.Wallet.Infrastructure.Context
     {
         public Task<int> AddEventSourcesCommit(CancellationToken ct);
         public Task<int> Commit(CancellationToken ct);
+        void DetectAdded<T>(T entity);
     }
 }

@@ -15,6 +15,7 @@ namespace MakFood.Wallet.Infrastructure.Context.Configurations
         {
             builder.ToTable("OrderDetails");
             builder.HasKey(o => o.OrderDetailId);
+            builder.Property(c => c.OrderDetailId).ValueGeneratedNever();
 
             builder.Property(o => o.OrderAmount)
                 .HasColumnType("decimal(18,2)")

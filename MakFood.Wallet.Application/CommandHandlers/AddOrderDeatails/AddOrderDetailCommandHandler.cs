@@ -27,20 +27,23 @@ namespace MakFood.Wallet.Application.CommandHandlers.AddOrderDeatails
             var discountCode = await _dicoountCodeRepository.GetDiscountCodeByID(request.DicontcodeID);
             var wallet = await _walletRepository.GetWalletById(request.WalletID,ct);
             Decimal finallAmount= request.OrderAmount;
+            OrderDetails order;
             if (discountCode is null) {
-
-                wallet.OrderDetails.Add(new OrderDetails(request.OrderAmount));
+                order = new OrderDetails(request.OrderAmount);
+                wallet.OrderDetails.Add(order);
+                _unitOfWork.DetectAdded(order);
             }
             else {
                 finallAmount = request.OrderAmount.ApplyDicount(discountCode, request.WalletID);
-                wallet.OrderDetails.Add(new OrderDetails(request.OrderAmount,request.WalletID,finallAmount));
+                order = new OrderDetails(request.OrderAmount, request.WalletID, finallAmount);
+                wallet.OrderDetails.Add(order);
                 
             }
             
             await _unitOfWork.Commit(ct);
             var respone = new AddOrderDetailCommandResponse()
             {
-                Respone=$"Your finall amount is {finallAmount}"
+                Respone=$"Your finall amount is '{finallAmount}' , your order ID {order.OrderDetailId}"
             };
             return respone;
         }

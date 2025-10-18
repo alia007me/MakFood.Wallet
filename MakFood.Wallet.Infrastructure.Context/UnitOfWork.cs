@@ -14,10 +14,16 @@ namespace MakFood.Wallet.Infrastructure.Context
 
         public UnitOfWork(MakFoodWalletDbContext context)
         {
+            //dast shoma
             _context = context;
         }
         public async Task<int> Commit(CancellationToken ct) {
             return await _context.SaveChangesAsync(ct);
+        }
+
+        public void DetectAdded<T>(T entity)
+        {
+            _context.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Added;
         }
 
         public async Task<int> AddEventSourcesCommit(CancellationToken ct)
