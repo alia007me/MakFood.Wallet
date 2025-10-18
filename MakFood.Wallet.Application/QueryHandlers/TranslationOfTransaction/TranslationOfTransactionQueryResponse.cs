@@ -14,11 +14,10 @@ namespace MakFood.Wallet.Application.QueryHandlers.Transaction
 
     {
         public Guid Id { get; set; }
-        public Guid walletId { get; set; }
         public Guid WalletId { get; set; }
         public DateTime dateTime { get; set; }
-        public Decimal Amount { get; private set; }
-        public string TransactionNumber { get; private set; }
+        public Decimal Amount { get; set; }
+        public string TransactionNumber { get;  set; }
     }
 
 

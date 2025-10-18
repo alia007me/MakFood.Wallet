@@ -24,8 +24,10 @@ namespace MakFood.Wallet.API.Controllers
             
             var query = new TranslationOfTransactionQuery
             {
+               
                 WalletId = WalletId,
-                dateTime = dateTime
+                dateTime = dateTime,
+                
             };
 
             var result = await _mediator.Send(query);
