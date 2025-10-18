@@ -25,7 +25,7 @@ namespace MakFood.Wallet.Application.QueryHandlers.Transaction
 
             var transactionItems = transactions.Select(c => new TranslationOfTransactionQueryResponse.TransactionItem
             {
-                
+                //
                 WalletId = c.WalletId,
                 dateTime = c.DateTime,
               
