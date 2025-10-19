@@ -3,11 +3,11 @@ using MakFood.Wallet.Domain.Model.Contracts;
 
 namespace Application.Commands.WithdrawWallet
 {
-    public class WithdrawWalletCommandHandler
+    public class RefundOfWalletCommandHandller
     {
         private readonly IWalletRepository _walletRepository;
 
-        public WithdrawWalletCommandHandler(IWalletRepository walletRepository)
+        public RefundOfWalletCommandHandller(IWalletRepository walletRepository)
         {
             _walletRepository = walletRepository;
         }
@@ -15,19 +15,18 @@ namespace Application.Commands.WithdrawWallet
         public async Task<RefundOfWalletCommandResponse> HandleAsync(RefundOfWalletCommand command)
         {
             if (command.WalletId == Guid.Empty)
-                return RefundOfWalletCommandResponse.Fail("WalletId is null" +
-                    ".");
+                return RefundOfWalletCommandResponse.Fail("WalletId is null");
 
             if (command.Amount <= 0)
-                return RefundOfWalletCommandResponse.Fail("Amount must be greater than zero.");
+                return RefundOfWalletCommandResponse.Fail("Amount must be greater than zero");
 
-            var wallet = await _walletRepository.GetByUserIdAsync(command.WalletId);
+            var wallet = await _walletRepository.GetByWalletIdAsync(command.WalletId);
             if (wallet == null)
                 return RefundOfWalletCommandResponse.Fail("Wallet not found.");
 
             try
             {
-                wallet.Withdraw(command.Amount);
+             
                 await _walletRepository.UpdateAsync(wallet);
                 await _walletRepository.SaveChangesAsync();
 
@@ -39,7 +38,7 @@ namespace Application.Commands.WithdrawWallet
             }
             catch (Exception)
             {
-                return RefundOfWalletCommandResponse.Fail("An unexpected error occurred.");
+                return RefundOfWalletCommandResponse.Fail("Failure");
             }
         }
     }

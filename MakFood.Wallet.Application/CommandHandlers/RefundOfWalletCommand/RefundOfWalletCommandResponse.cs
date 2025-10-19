@@ -8,10 +8,10 @@
         public string Message { get; set; } = string.Empty;
         public decimal? RemainingBalance { get; set; }
 
-        public static RefundOfWalletCommandResponse Ok(decimal balance, string msg = "Withdrawal successful.")
-            => new() { Success = true, Message = msg, RemainingBalance = balance };
+        public static RefundOfWalletCommandResponse Ok(decimal balance, string msg = "ok")
+           => new() { Success = true, Message = msg, RemainingBalance = balance };
 
         public static RefundOfWalletCommandResponse Fail(string msg)
-            => new() { Success = false, Message = msg };
+             => new() { Success = false, Message = msg };
     }
 }

@@ -51,6 +51,26 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
         {
             return (uint)_context.WalletEvents.Count(c => c.OccurredDateTime.Date == DateTime.Now.Date);
         }
+       
 
+
+            public async Task<Domain.Model.Entities.Wallet> GetByWalletIdAsync(Guid walletId)
+            {
+                return await _context.Wallets
+                    .Include(w => w.Transactions)
+                    .FirstOrDefaultAsync(w => w.WalletId == walletId);
+            }
+
+            public async Task UpdateAsync(Domain.Model.Entities.Wallet wallet)
+            {
+                _context.Wallets.Update(wallet);
+            }
+
+            public async Task SaveChangesAsync()
+            {
+                await _context.SaveChangesAsync();
+            }
+        }
     }
-}
+
+

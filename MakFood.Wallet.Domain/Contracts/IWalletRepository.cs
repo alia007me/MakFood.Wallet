@@ -15,6 +15,17 @@ namespace MakFood.Wallet.Domain.Model.Contracts
     , PaymentMethod paymentMethod, DateTime dateTime, PaymentStatus paymentStatus);
         Task<Transaction> GetTransactionAsync(string transactionNumber);
         uint TransactionCounts();
-    }
+        
+            Task<Domain.Model.Entities.Wallet> GetByWalletIdAsync(Guid walletId);
+        Task UpdateAsync(Domain.Model.Entities.Wallet wallet);
+            Task SaveChangesAsync();
 
+
+    
+       
+        
+        
+    }
 }
+
+
