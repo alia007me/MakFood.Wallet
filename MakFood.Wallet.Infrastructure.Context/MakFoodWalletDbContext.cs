@@ -19,7 +19,7 @@ namespace MakFood.Wallet.Infrastructure.Context
         public DbSet<Wallet.Domain.Model.Entities.Wallet> Wallets { get; set; }
         public DbSet<EventSource> WalletEvents { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<Accounts> Accounts { get; set; }
+        //public DbSet<Account> Accounts { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<DiscountCode> DiscountCodes { get; set; }
 

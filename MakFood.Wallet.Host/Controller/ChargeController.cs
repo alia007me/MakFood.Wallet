@@ -38,11 +38,10 @@ namespace MakFood.Wallet.Host.Controller
         public async Task<IActionResult> ChargeOfflineWallet([FromBody] ChargeBalanceOfflineCommand chargeBalanceOffline , CancellationToken ct)
         {
             chargeBalanceOffline.Validate();
-
-
-
             var result = await _mediator.Send(chargeBalanceOffline);
-            await _unitOfWork.Commit(ct);
+
+            await _unitOfWork.AddEventSourcesCommit(ct);
+
             return Ok($"Your Request Submitted . YourTransactionNumber {result.TransactionNumber}");
         }
         [HttpPatch("Wallet/{walletId}/Balance/Increase/Approve")]
@@ -50,9 +49,11 @@ namespace MakFood.Wallet.Host.Controller
         {
 
             var result = await _mediator.Send(chefApprove);
-            await _unitOfWork.Commit(ct);
+
+            await _unitOfWork.AddEventSourcesCommit(ct);
 
             return Ok($"Wallet {result.WalletId} Charged Successfully ! ");
+
         }
     }
 }

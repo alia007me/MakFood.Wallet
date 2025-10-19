@@ -9,21 +9,19 @@ namespace MakFood.Wallet.Domain.Model.Entities
 {
     public class OrderDetails
     {
-        public OrderDetails(decimal OrderAmount, Guid DiscountCodeID, PaymentType PaymentType, decimal TotalPaid)
+        public OrderDetails(decimal OrderAmount, Guid DiscountCodeID,/* PaymentType PaymentType,*/ decimal TotalAmount)
         {
             this.OrderAmount = OrderAmount;
             this.DiscountCodeID = DiscountCodeID;
-            this.PaymentType = PaymentType;
-            this.TotalPaid = TotalPaid;
+            //this.PaymentType = PaymentType;
+            this.TotalAmount = TotalAmount;
         }
         public Guid OrderDetailId { get; private set; }
         public Decimal OrderAmount { get; private set; }
         public Guid DiscountCodeID { get; private set; }
-        public PaymentType PaymentType { get; private set; }
-        public Decimal TotalPaid { get; private set; }
-
-
-
+        //public PaymentType PaymentType { get; private set; }
+        public Decimal TotalAmount { get; private set; }
         public Guid WalletId { get; private set; }
+        public Boolean isPaied { get; private set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Application.CommandHandlers.ZarinpalPayRequest
 {
-    public class ZarinpalPayRequestCommand : CommandBase ,  IRequest<ZarinpalPayRequestCommandResponse>
+    public class ZarinpalPayRequestCommand : CommandBase,  IRequest<ZarinpalPayRequestCommandResponse>
     {
         public decimal Amount { get; set; }
         public string Email { get; set; }

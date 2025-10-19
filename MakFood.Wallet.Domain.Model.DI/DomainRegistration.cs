@@ -1,5 +1,7 @@
-﻿using MakFood.Wallet.Domain.Model.Services;
+﻿using MakFood.Wallet.Domain.Model.Contracts;
+using MakFood.Wallet.Domain.Model.Services;
 using MakFood.Wallet.Domain.Model.Services.Contract;
+using MakFood.Wallet.Infrastructure.Repositories.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace MakFood.Wallet.Domain.Model.DI
         {
 
             services.AddScoped<IOfflineTransactionNumberGenerator, OfflineTransactionNumberGenerator>();
-
+            services.AddScoped<IReplyEventRepository, ReplyEventRepository>();
 
             return services;
         }

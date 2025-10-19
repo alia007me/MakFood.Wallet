@@ -19,6 +19,14 @@ namespace MakFood.Wallet.Infrastructure.Context.Configurations
             builder.Property(w => w.CustomerId)
                 .IsRequired();
 
+            builder.HasMany(x=>x.Accounts)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x=>x.Transactions)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+
 
 
 

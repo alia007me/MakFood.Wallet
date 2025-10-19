@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Domain.Model.Entities
 {
-    public class Accounts
+    public class Account
     {
-
+        private Account() { }
         private string _accountnumber;
-
-        public Accounts(Guid AccountId, string Name, string AccountNumber, DateOnly ExpiredDate)
+        
+        public Account(Guid AccountId, string Name, string AccountNumber, DateOnly ExpiredDate)
         {
             this.AccountId = AccountId;
             this.Name = Name;
@@ -35,10 +35,6 @@ namespace MakFood.Wallet.Domain.Model.Entities
             }
         }
         public DateOnly ExpiredDate { get; private set; }
-
-
-
-        public Guid WalletId { get; private set; }
     }
 
 }
