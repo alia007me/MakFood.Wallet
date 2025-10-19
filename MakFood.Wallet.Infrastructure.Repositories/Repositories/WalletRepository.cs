@@ -50,7 +50,13 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
         public uint TransactionCounts()
         {
             return (uint)_context.WalletEvents.Count(c => c.OccurredDateTime.Date == DateTime.Now.Date);
-        }
 
+        }
+        public async Task<List<Domain.Model.Entities.Transaction>> GetTransaction(Guid Id, DateTime dateTime)
+        {
+            return await _context.Transactions.AsNoTracking().Where(c => c.WalletId == Id && c.DateTime <= dateTime)
+                .OrderByDescending(C => C.DateTime)
+                .ToListAsync();
+        }
     }
 }
