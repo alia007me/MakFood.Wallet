@@ -41,7 +41,8 @@ namespace MakFood.Wallet.Host.Controller
 
         }
         [HttpGet("verify")]
-        public async Task<IActionResult> Verify([FromQuery] string authority, [FromQuery] string status,CancellationToken ct)
+        public async Task<IActionResult> Verify([FromQuery] string authority, [FromQuery] string 
+            status,CancellationToken ct)
         {
 
 

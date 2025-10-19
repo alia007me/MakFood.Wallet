@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Application.QueryHandlers.Transaction
 {
-    public class TranslationOfTransactionQueryValidator : AbstractValidator<TranslationOfTransactionQuery>
+    public class ShowTransactionQueryValidator : AbstractValidator<ShowTransactionQuery>
     {
 
-        public TranslationOfTransactionQueryValidator()
+        public ShowTransactionQueryValidator()
         {
             RuleFor(x => x.WalletId).NotEmpty().WithMessage("Chekar mikini");
             RuleFor(x => x.dateTime).NotEmpty().WithMessage("chikar mikoni");

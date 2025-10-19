@@ -4,14 +4,14 @@ using MediatR;
 
 namespace MakFood.Wallet.Application.QueryHandlers.Transaction
 {
-    public class TranslationOfTransactionQuery : QueryBase, IRequest<TranslationOfTransactionQueryResponse>
+    public class ShowTransactionQuery : QueryBase, IRequest<ShowTransactionQueryResponse>
     {
         public Guid WalletId { get; set; }
         public DateTime dateTime { get; set; }
 
         public override void Validate()
         {
-            new TranslationOfTransactionQueryValidator().Validate(this).ThrowIfNeeded();
+            new ShowTransactionQueryValidator().Validate(this).ThrowIfNeeded();
         }
     }
 }

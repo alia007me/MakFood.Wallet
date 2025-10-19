@@ -3,10 +3,10 @@
 namespace MakFood.Wallet.Application.QueryHandlers.Transaction
 {
 
-    public class TranslationOfTransactionQueryResponse
+    public class ShowTransactionQueryResponse
     {
         public List<TransactionItem> transactionItems { get; set; }
-        public TranslationOfTransactionQueryResponse(List<TransactionItem> transactionItems)
+        public ShowTransactionQueryResponse(List<TransactionItem> transactionItems)
         {
             this.transactionItems = transactionItems;
         }
