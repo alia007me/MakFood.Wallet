@@ -49,7 +49,7 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                     b.ToTable("WalletEvents");
                 });
 
-            modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Accounts", b =>
+            modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Account", b =>
                 {
                     b.Property<Guid>("AccountId")
                         .ValueGeneratedOnAdd()
@@ -68,10 +68,12 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("WalletId")
+                    b.Property<Guid?>("WalletId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("AccountId");
+
+                    b.HasIndex("WalletId");
 
                     b.ToTable("Accounts", (string)null);
                 });
@@ -108,22 +110,24 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DiscountCodeID")
+                    b.Property<Guid?>("DiscountCodeID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("OrderAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("PaymentType")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPaid")
+                    b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("WalletId")
+                    b.Property<Guid?>("WalletId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("isPaied")
+                        .HasColumnType("bit");
+
                     b.HasKey("OrderDetailId");
+
+                    b.HasIndex("WalletId");
 
                     b.ToTable("OrderDetails", (string)null);
                 });
@@ -182,6 +186,22 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
                     b.ToTable("Wallets", (string)null);
                 });
 
+            modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Account", b =>
+                {
+                    b.HasOne("MakFood.Wallet.Domain.Model.Entities.Wallet", null)
+                        .WithMany("Accounts")
+                        .HasForeignKey("WalletId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.OrderDetails", b =>
+                {
+                    b.HasOne("MakFood.Wallet.Domain.Model.Entities.Wallet", null)
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("WalletId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Transaction", b =>
                 {
                     b.HasOne("MakFood.Wallet.Domain.Model.Entities.Wallet", null)
@@ -193,6 +213,10 @@ namespace MakFood.Wallet.Infrastructure.Context.Migrations
 
             modelBuilder.Entity("MakFood.Wallet.Domain.Model.Entities.Wallet", b =>
                 {
+                    b.Navigation("Accounts");
+
+                    b.Navigation("OrderDetails");
+
                     b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618

@@ -2,6 +2,7 @@
 using MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline;
 using MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline;
 using MakFood.Wallet.Application.CommandHandlers.ChefApprove;
+using MakFood.Wallet.Application.CommandHandlers.RobertInaroAzAvalBiar;
 using MakFood.Wallet.Application.CommandHandlers.ZarinpalPayRequest;
 using MakFood.Wallet.Application.CommandHandlers.ZarinpalVerify;
 using MakFood.Wallet.Application.ServiceContracts;

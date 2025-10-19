@@ -15,20 +15,14 @@ namespace MakFood.Wallet.Infrastructure.Context.Configurations
         {
             builder.ToTable("OrderDetails");
             builder.HasKey(o => o.OrderDetailId);
+            builder.Property(c => c.OrderDetailId).ValueGeneratedNever();
 
             builder.Property(o => o.OrderAmount)
                 .HasColumnType("decimal(18,2)")
                 .IsRequired();
 
-            builder.Property(o => o.TotalPaid)
-                .HasColumnType("decimal(18,2)")
-                .IsRequired();
-
-            builder.Property(o => o.PaymentType)
-                .IsRequired();
-
             builder.Property(o => o.DiscountCodeID)
-                .IsRequired();
+                .IsRequired(false);
         }
     }
 }

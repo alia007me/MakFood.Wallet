@@ -11,8 +11,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline
     {
         public ChargeBalanceOfflineCommandValidator()
         {
-            RuleFor(x=>x.Amount).NotEmpty().WithMessage("Please Enter The Amount You Want To Charge !")
-                .GreaterThan(100000).WithMessage("Amount Must Be More Than 100000IRR");
+            RuleFor(x => x.Amount).NotEmpty().WithMessage("Please Enter The Amount You Want To Charge !");
 
             
         }

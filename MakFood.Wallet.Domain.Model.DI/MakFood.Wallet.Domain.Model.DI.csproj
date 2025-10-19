@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MakFood.Wallet.Domain\MakFood.Wallet.Domain.Model.csproj" />
+    <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Repositories\MakFood.Wallet.Infrastructure.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

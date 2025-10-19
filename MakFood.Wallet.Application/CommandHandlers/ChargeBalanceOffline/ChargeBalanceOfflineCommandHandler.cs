@@ -1,4 +1,8 @@
+ 
+﻿using MakFood.Wallet.Application.CommandHandlers.RobertInaroAzAvalBiar;
+
 ﻿using Azure.Core;
+
 using MakFood.Wallet.Domain.Model.Contracts;
 using MakFood.Wallet.Domain.Model.Enums;
 using MakFood.Wallet.Domain.Model.Events.WalletEvents;

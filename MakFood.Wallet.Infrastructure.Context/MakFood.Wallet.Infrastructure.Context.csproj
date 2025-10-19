@@ -28,4 +28,8 @@
     <ProjectReference Include="..\MakFood.Wallet.Infrastructure.Substructure\MakFood.Wallet.Infrastructure.Substructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
