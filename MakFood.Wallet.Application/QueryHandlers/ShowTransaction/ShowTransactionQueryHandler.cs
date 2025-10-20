@@ -31,7 +31,7 @@ namespace MakFood.Wallet.Application.QueryHandlers.Transaction
                 TransactionNumber = c.TransactionNumber
             }).ToList();
             ///
-            return new TranslationOfTransactionQueryResponse(transactionItems);
+            return new ShowTransactionQueryResponse(transactionItems);
         }
     }
 }

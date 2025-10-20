@@ -52,10 +52,17 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
             return (uint)_context.WalletEvents.Count(c => c.OccurredDateTime.Date == DateTime.Now.Date);
 
         }
-        public async Task<List<Domain.Model.Entities.Wallet>> GetTransaction(Guid walletId, DateTime dateTime)
+        public async Task<List<Domain.Model.Entities.Transaction>> GetTransaction(Guid walletId, DateTime dateTime)
         {
-            return await _context.Wallets.AsNoTracking().Include(c => c.Transactions).ThenInclude(c => c.WalletId == walletId && c.DateTime <= dateTime)
-                .ToListAsync();
+            var transactions = await _context.Wallets.Include(c => c.Transactions).Where(x => x.WalletId == walletId).SelectMany(x=>x.Transactions).ToListAsync();
+            var transactionFromDateTillNow = new List<Transaction>();
+            foreach(var x in transactions)
+            {
+                if (x.DateTime <= dateTime)
+                    transactionFromDateTillNow.Add(x);
+            }
+            return transactionFromDateTillNow;
         }
     }
-}
+}//.AsNoTracking().Include(c => c.Transactions).ThenInclude(c => c.WalletId == walletId && c.DateTime <= dateTime)
+   //             .ToListAsync();
