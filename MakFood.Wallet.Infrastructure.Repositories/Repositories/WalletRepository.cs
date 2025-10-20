@@ -58,7 +58,7 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
             var transactionFromDateTillNow = new List<Transaction>();
             foreach(var x in transactions)
             {
-                if (x.DateTime <= dateTime)
+                if (x.DateTime >= dateTime)
                     transactionFromDateTillNow.Add(x);
             }
             return transactionFromDateTillNow;
