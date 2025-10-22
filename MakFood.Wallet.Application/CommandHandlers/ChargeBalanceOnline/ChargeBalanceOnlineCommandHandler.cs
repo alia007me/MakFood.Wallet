@@ -18,7 +18,6 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
         private readonly IWalletRepository _walletRepository;
 
         private readonly IZarinpalGateway _zarinpalGateway;
-    //    private readonly ITransactionRepository _transactionRepository;
 
 
         public ChargeBalanceOnlineCommandHandler(IUnitOfWork unitOfWork, IWalletRepository walletRepository, IZarinpalGateway zarinpalGateway)
@@ -26,7 +25,6 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
             _unitOfWork = unitOfWork;
             _walletRepository = walletRepository;
             _zarinpalGateway = zarinpalGateway;
-        //   _transactionRepository = transactionRepository;
         }
 
         public async Task<ChargeBalanceOnlineCommandResponse> Handle(ChargeBalanceOnlineCommand request, CancellationToken cancellationToken)
@@ -50,7 +48,6 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOnline
             {
                 throw new Exception("Your Request For Charging Your Balance Has Failed !");
             }
-
 
         }
     }

@@ -14,7 +14,6 @@ namespace MakFood.Wallet.Infrastructure.Context
 
         public UnitOfWork(MakFoodWalletDbContext context)
         {
-            //dast shoma
             _context = context;
         }
         public async Task<int> Commit(CancellationToken ct) {
@@ -36,8 +35,6 @@ namespace MakFood.Wallet.Infrastructure.Context
         private void AddEventSources()
         {
             var entries = _context.ChangeTracker.Entries();
-            /*.Where(x=>x.State!=Microsoft.EntityFrameworkCore.EntityState.Unchanged)*/
-
             entries.Where(entry => entry.Entity is IEventSourcedEntity)
                 .Select(entry => entry.Entity as IEventSourcedEntity)
                 .Foreach(eventSourceEntity =>

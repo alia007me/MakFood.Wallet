@@ -19,7 +19,7 @@ namespace MakFood.Wallet.Application.CommandHandlers
         public PayOrderDeatailComandvalidator()
         {
             RuleFor(X => X.WalletID).NotEmpty().NotNull();
-            RuleFor(X => X.OrdearDeatais).NotEmpty().NotNull();
+            RuleFor(X => X.OrdearDeataisID).NotEmpty().NotNull();
         } 
     }
 }

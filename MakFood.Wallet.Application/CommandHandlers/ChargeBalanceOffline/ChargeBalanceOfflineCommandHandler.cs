@@ -35,19 +35,15 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline
         public async Task<ChargeBalanceOfflineCommandResponse> Handle(ChargeBalanceOfflineCommand request, CancellationToken cancellationToken)
         {
             var transactionNumber = _transactionNumberGenerator.GenerateTransactionNumber();
-            //var wallet = await _chargeWalletRepository.GetWalletById(request.Walletid ,cancellationToken);
             var wallet = await GetWallet(request.Walletid,cancellationToken);
             
             wallet.Apply(new BalanceIncreasedOfflineWaitingForApproveEvent(request.Amount));
-            //await _chargeWalletRepository.AddTransaction(request.Walletid,transactionNumber, request.Amount,
-            //    PaymentMethod.Offline, DateTime.Now, PaymentStatus.Pending);
-            AddOneTransaction(request.Walletid,transactionNumber,request.Amount);
-
-
+            AddOneTransaction(request.Walletid, transactionNumber, request.Amount);
             var response = new ChargeBalanceOfflineCommandResponse()
             {
                 TransactionNumber = transactionNumber
             };
+            await _unitOfWork.AddEventSourcesCommit(cancellationToken);
 
             return response;
         }

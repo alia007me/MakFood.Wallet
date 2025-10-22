@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace MakFood.Wallet.Infrastructure.Context.Configurations
 {
-    public class AccountConfiguration : IEntityTypeConfiguration<Account>
+    public class AccountConfiguration : IEntityTypeConfiguration<BankAccount>
     {
-        public void Configure(EntityTypeBuilder<Account> builder)
+        public void Configure(EntityTypeBuilder<BankAccount> builder)
         {
             builder.ToTable("Accounts");
             builder.HasKey(a => a.AccountId);

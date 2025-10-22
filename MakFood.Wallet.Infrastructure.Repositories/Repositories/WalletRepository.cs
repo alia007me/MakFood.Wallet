@@ -39,7 +39,6 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
             _context.Wallets.Attach(wallet);
             _context.Entry(wallet).Property(w => w.Balance).IsModified = true;
 
-            await _context.SaveChangesAsync(ct);
         }
 
 
@@ -51,8 +50,7 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
 
         public async Task<Transaction> GetTransactionAsync(string authority)
         {
-            var result = await _context.Transactions.SingleOrDefaultAsync(x => x.TransactionNumber == authority);
-            return result;
+            return await _context.Transactions.SingleOrDefaultAsync(x => x.TransactionNumber == authority)
         }
 
 

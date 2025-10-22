@@ -17,7 +17,7 @@ namespace MakFood.Wallet.Application.CommandHandlers
     public class PayOrderDeatailComand: CommandBase, IRequest<PayOrderDeatailComandRespone>
     {
         public Guid WalletID { get; set; }
-        public Guid OrdearDeatais { get; set; }
+        public Guid OrdearDeataisID { get; set; }
         public override void Validate()
         {
             new PayOrderDeatailComandvalidator().Validate(this).ThrowIfNeeded();
