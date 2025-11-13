@@ -2,6 +2,7 @@
 using MakFood.Wallet.Domain.Model.Entities;
 using MakFood.Wallet.Domain.Model.Enums;
 using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
