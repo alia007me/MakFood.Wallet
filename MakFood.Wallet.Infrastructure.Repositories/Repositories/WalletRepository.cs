@@ -50,7 +50,7 @@ namespace MakFood.Wallet.Infrastructure.Repositories.Repositories
 
         public async Task<Transaction> GetTransactionAsync(string authority)
         {
-            return await _context.Transactions.SingleOrDefaultAsync(x => x.TransactionNumber == authority)
+            return await _context.Transactions.SingleOrDefaultAsync(x => x.TransactionNumber == authority);
         }
 
 

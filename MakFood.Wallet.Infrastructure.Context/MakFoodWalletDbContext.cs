@@ -7,10 +7,7 @@ namespace MakFood.Wallet.Infrastructure.Context
 {
     public class MakFoodWalletDbContext : DbContext
     {
-        public MakFoodWalletDbContext(DbContextOptions<MakFoodWalletDbContext> options) : base(options)
-        {
-
-        }
+        public MakFoodWalletDbContext(DbContextOptions<MakFoodWalletDbContext> options) : base(options){}
         public DbSet<Wallet.Domain.Model.Entities.Wallet> Wallets { get; set; }
         public DbSet<EventSource> WalletEvents { get; set; }
         public DbSet<Transaction> Transactions { get; set; }

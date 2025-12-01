@@ -35,7 +35,7 @@ namespace MakFood.Wallet.Application.CommandHandlers.PayOrderDeatails
                 };
             }
             else {
-                var result = SendForPayOnline(wallet, shortageAmount);
+                var result =await SendForPayOnline(wallet, shortageAmount);
                 respon = new PayOrderDeatailComandRespone
                 {
                     response = $"your wallet amount is not enough pay this  : https://sandbox.zarinpal.com/pg/StartPay/{result.authority}"
