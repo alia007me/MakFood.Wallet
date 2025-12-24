@@ -12,8 +12,6 @@ namespace MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline
         public ChargeBalanceOfflineCommandValidator()
         {
             RuleFor(x => x.Amount).NotEmpty().WithMessage("Please Enter The Amount You Want To Charge !");
-
-            
         }
     }
 }

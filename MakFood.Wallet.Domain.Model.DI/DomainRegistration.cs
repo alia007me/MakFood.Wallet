@@ -18,9 +18,6 @@ namespace MakFood.Wallet.Domain.Model.DI
 
             services.AddScoped<IOfflineTransactionNumberGenerator, OfflineTransactionNumberGenerator>();
             services.AddScoped<IReplyEventRepository, ReplyEventRepository>();
-           // services.AddScoped<IOrderDetailsRepository, OrderDetailsRepository>();
-            services.AddScoped<IDicoountCodeRepository, DicoountCodeRepository>();
-
             return services;
         }
     }

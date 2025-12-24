@@ -16,13 +16,13 @@ namespace MakFood.Wallet.Domain.Model.Services
             if (orderDetails.isPaied == true) {
                 throw new Exception("you paied this");
             }
-            if (orderDetails.TotalAmount <= wallet.Balance) {
-                wallet.Apply(new BalanceDecreasedEvent(orderDetails.TotalAmount));
+            if (orderDetails.OrderAmount <= wallet.Balance) {
+                wallet.Apply(new BalanceDecreasedEvent(orderDetails.OrderAmount));
                 orderDetails.pay();
                 return decimal.Zero;
             }
             else {
-                return orderDetails.TotalAmount-wallet.Balance;
+                return orderDetails.OrderAmount -wallet.Balance;
             }
         }
     }

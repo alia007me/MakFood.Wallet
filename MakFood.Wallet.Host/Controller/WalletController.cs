@@ -24,13 +24,13 @@ namespace MakFood.Wallet.Host.Controller
             _mediator = mediator;
             _unitOfWork = unitOfWork;
         }
-        [HttpPost("Wallet/{walletId}/OrderDetail/{orderDetailId}/pay")]
+        [HttpPost("{walletId}/OrderDetail/{orderDetailId}/pay")]
         public async Task<IActionResult> PayOrder([FromBody] PayOrderDeatailComand command, CancellationToken ct)
         {
             var result = await _mediator.Send(command, ct);
             return Ok(result.response);
         }
-            [HttpPost("Wallet/{custumerId}")]
+            [HttpPost("{custumerId}")]
         public async Task<IActionResult> AddWallet([FromBody] AddWalletCommand addWalletCommand)
         {
             addWalletCommand.Validate();
@@ -38,7 +38,7 @@ namespace MakFood.Wallet.Host.Controller
             return Ok("you Wallet created");
         }
 
-        [HttpPatch("Wallet/{walletId}/Balance/Increase/Online")]
+        [HttpPatch("{walletId}/Balance/Increase/Online")]
         public async Task<IActionResult> ChargeWallet([FromBody] ChargeBalanceOnlineCommand chargeBalanceOnline)
         {
             chargeBalanceOnline.Validate();
@@ -48,7 +48,7 @@ namespace MakFood.Wallet.Host.Controller
             return Ok($"https://sandbox.zarinpal.com/pg/StartPay/{result.authority}");
 
         }
-        [HttpPost("Wallet/{walletId}/Balance/Increase/Offline")]
+        [HttpPost("{walletId}/Balance/Increase/Offline")]
         public async Task<IActionResult> ChargeOfflineWallet([FromBody] ChargeBalanceOfflineCommand chargeBalanceOffline, CancellationToken ct)
         {
             chargeBalanceOffline.Validate();
@@ -59,7 +59,7 @@ namespace MakFood.Wallet.Host.Controller
             return Ok($"Your Request Submitted . YourTransactionNumber {result.TransactionNumber}");
         }
 
-        [HttpPost("Wallet/{WalletId}/OrderDeatail/{OrderDeatail}")]
+        [HttpPost("{WalletId}/OrderDeatail")]
         public async Task<IActionResult> AddOrderDeatail([FromBody] AddOrderDetailCommand AddOrderDetail, CancellationToken ct)
         {
             AddOrderDetail.Validate();
@@ -69,7 +69,7 @@ namespace MakFood.Wallet.Host.Controller
         }
 
 
-        [HttpPatch("Wallet/{walletId}/Balance/Increase/Approve")]
+        [HttpPatch("{walletId}/Balance/Increase/Approve")]
         public async Task<IActionResult> ChefApprove([FromBody] ApproveCommand chefApprove, CancellationToken ct)
         {
 

@@ -21,22 +21,32 @@ namespace MakFood.Wallet.Domain.Model.Entities
         {
             this.CustomerId = CustomerId;
             this.WalletId = CustomerId;
+            this.Balance=Decimal.Zero;
         }
+        public Decimal Balance { get; private set; }
         public Guid WalletId { get; private init; }
         public Guid CustomerId { get; private init; }
-        public Decimal Balance { get; private set; }= Decimal.Zero;
         
 
 
         public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
-        public List<Account> Accounts { get; private set; } = new List<Account>();
+        public List<BankAccount> Accounts { get; private set; } = new List<BankAccount>();
 
         public List<OrderDetails> OrderDetails { get; private set; } = new List<OrderDetails>();
 
         public IReadOnlyList<Event> Events => _events.AsReadOnly();
 
 
+        public void Replay(List<WalletEvent> events)
+        {
+            this.Balance = 0;
 
+            foreach (var ev in events) 
+            {
+                Apply(ev);
+
+            }
+        } 
         public void Apply<T>(T @event) where T : WalletEvent
         {
             Apply((dynamic)@event);
@@ -48,7 +58,6 @@ namespace MakFood.Wallet.Domain.Model.Entities
             this.Balance += @event.Amount;
             _events.Add(@event);    
         }
-
         public void Apply(BalanceDecreasedEvent @event)
         {
             this.Balance -= @event.Amount;
@@ -60,20 +69,6 @@ namespace MakFood.Wallet.Domain.Model.Entities
             this.Balance -= @event.Amount;
             _events.Add(@event);
         }
-
-        
-        public void Replay(List<WalletEvent> events)
-        {
-            this.Balance = 0;
-
-            foreach (var ev in events) 
-            {
-                Apply(ev);
-
-            }
-        } 
-
-
         public void Apply(BalanceIncreasedOfflineWaitingForApproveEvent @event)
         {
             _events.Add(@event);

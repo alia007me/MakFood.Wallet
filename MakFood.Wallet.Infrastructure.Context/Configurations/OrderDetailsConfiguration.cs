@@ -20,9 +20,6 @@ namespace MakFood.Wallet.Infrastructure.Context.Configurations
             builder.Property(o => o.OrderAmount)
                 .HasColumnType("decimal(18,2)")
                 .IsRequired();
-
-            builder.Property(o => o.DiscountCodeID)
-                .IsRequired(false);
         }
     }
 }

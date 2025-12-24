@@ -8,7 +8,6 @@ namespace MakFood.Wallet.Application.CommandHandlers.AddOrderDeatails
     public class AddOrderDetailCommand : CommandBase, IRequest<AddOrderDetailCommandResponse>
     {
         public decimal OrderAmount { get; set; }
-        public Guid? DicontcodeID { get; set; }
         public Guid WalletID { get; set; }
         public override void Validate()
         {

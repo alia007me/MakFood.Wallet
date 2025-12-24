@@ -1,5 +1,4 @@
-﻿using MakFood.Wallet.Application.CommandHandlers.ChargeBalanceOffline;
-using MakFood.Wallet.Domain.Model.Contracts;
+﻿using MakFood.Wallet.Domain.Model.Contracts;
 using MakFood.Wallet.Infrastructure.Context;
 using MediatR;
 
